@@ -1,0 +1,1358 @@
+build_id,commit,pull_req,branch,status,message,duration,started_at,jobs,event_type,author_email,committer_email
+499927973,666f593b94f504316eca4813cbfe42f615cad633,,master,canceled,[maven-release-plugin] prepare release tripleplay-2.0.5,0,,499927974,push,mdb@samskivert.com,mdb@samskivert.com
+431666129,550b12f8c75ab7af7c9fe19879585a3a2d335fda,,master,passed,Merge pull request #74 from guillerodriguez/pixel_coords
+
+Added test for improved pixel coordinate handling.,128,2018-09-21T20:17:23Z,431666130,push,mdb@samskivert.com,noreply@github.com
+431651253,5aacc7cc98c2e0c8f2aeeb262c6a59a89cc37fec,,master,passed,Merge pull request #75 from guillerodriguez/scroller
+
+Make Scroller pixel-aware when using layer translation for clipping.,94,2018-09-21T19:40:19Z,431651254,push,mdb@samskivert.com,noreply@github.com
+431399421,4138b538732ea67408f1cb0a2cd9732e049fe102,75,master,passed,Make Scroller pixel-aware when using layer translation for clipping.,70,2018-09-21T08:56:35Z,431399422,pull_request,guille.rodriguez@gmail.com,guille.rodriguez@gmail.com
+431376631,ff5152c614261cd501e75dd8de72836d8c4b04dd,74,master,passed,Added test for improved pixel coordinate handling.,1876,2018-09-21T07:48:13Z,431376632,pull_request,guille.rodriguez@gmail.com,guille.rodriguez@gmail.com
+431198688,45701dd68d4ff79159f802b684928d16811e4fbf,,master,passed,Improve our alignment to physical pixel boundaries.
+
+Previously we aligned elements to integral logical pixel boundaries, and relied
+on the ratio between logical and physical pixels to be integral. This is no
+longer the case in the wild world of zillions of screen sizes and densities.
+
+Our new approach is to leave logical position/size alone until validation, at
+which point we ensure that our boundaries (top, left, bottom, right) fall on
+integral physical pixels and then translate those back to an updated logical
+position and size which are used when laying out deeper children.,90,2018-09-20T19:58:48Z,431198689,push,mdb@samskivert.com,mdb@samskivert.com
+431190148,a0a9ebcbbe7b915799d7a4d34d3d08a0971e8d59,,master,passed,Added AUTHORS file.
+
+Re-headered everything with copyright assigned to authors (since OOO is no
+longer a legal entity), and with an updated end year.,105,2018-09-20T19:38:17Z,431190149,push,mdb@samskivert.com,mdb@samskivert.com
+426896532,b254cd209d6f742f24b503fc4321a8d9d6d7a368,,master,passed,Merge pull request #72 from guillerodriguez/xyflicker_rotation
+
+Translate pointer event coordinates to screen coordinates.,175,2018-09-10T21:29:46Z,426896533,push,mdb@samskivert.com,noreply@github.com
+426895584,7588d971fef3d836e54f6fd98ed835d73472174e,,master,passed,Merge pull request #73 from guillerodriguez/element_setlocation
+
+setLocation(): round coords instead of truncating.,235,2018-09-10T21:26:44Z,426895585,push,mdb@samskivert.com,noreply@github.com
+425233734,3aec26a33399095cd0064ffe81165cb331e89c18,73,master,passed,setLocation(): round coords instead of truncating.
+
+This avoids visual artifacts on devices with non-integer
+scaling factors.,139,2018-09-06T12:13:42Z,425233735,pull_request,guille.rodriguez@gmail.com,guille.rodriguez@gmail.com
+425146015,d250822ba26db738d1bc7a1e9321ecb85acd7142,72,master,passed,Fix previous commit.
+
+Pointer events are already in screen coordinates, and in any case
+screen cordinates are not what we want here. Instead, use the "local"
+event coordinates (translated to the hit layer's coordinate space).,100,2018-09-06T07:40:12Z,425146016,pull_request,guille.rodriguez@gmail.com,guille.rodriguez@gmail.com
+424736942,48591b2abb01fa4a93f74c5b9d1626a7296571c3,72,master,passed,Translate pointer event coordinates to screen coordinates.
+
+This fixes the case for layers that have transforms applied
+(for example, rotations of 90, 180, 270 degrees),120,2018-09-05T11:00:58Z,424736943,pull_request,guille.rodriguez@gmail.com,guille.rodriguez@gmail.com
+424392892,3f8235bd0a1c664070fa8b9fe7e197df55480e4e,,master,errored,[maven-release-plugin] prepare for next development iteration,46,2018-09-04T15:40:02Z,424392893,push,mdb@samskivert.com,mdb@samskivert.com
+424392866,bbbb8672541ad9a02458931497974ef16012ccb8,,tripleplay-2.0.4,errored,[maven-release-plugin] prepare release tripleplay-2.0.4,36,2018-09-04T15:39:23Z,424392867,push,mdb@samskivert.com,mdb@samskivert.com
+424392853,bbbb8672541ad9a02458931497974ef16012ccb8,,master,errored,[maven-release-plugin] prepare release tripleplay-2.0.4,38,2018-09-04T15:39:17Z,424392856,push,mdb@samskivert.com,mdb@samskivert.com
+381793135,789bef6387792d4672729c5a1826ce1a892eaaa0,,master,passed,Fix ordering issue in set.
+
+We need to call removeFromParent before we assign the new child as the contents
+of the box because *we* might be the old parent.
+
+In most cases this won't ever happen because the public set() checks if we're
+adding the same element to the box; but in the transition code (where we fade
+or flip a new child into the box), we "pre-add" a child, then transition to
+that child during a time when the old and new children are both parented by the
+box, and finally we "add" the new child, which causes it to be removed from its
+old parent, which in this case is the current box.
+
+This also more closely matches Elements, which calls removeFromParent, then
+adds new children to its internal tracking array, then calls didAdd.,99,2018-05-21T18:01:52Z,381793136,push,mdb@samskivert.com,mdb@samskivert.com
+381785928,fc5158ca936649fe0606c3def6541a7f4ae17264,,master,passed,Reorg a bit to keep cuddling code together.,99,2018-05-21T17:44:47Z,381785929,push,mdb@samskivert.com,mdb@samskivert.com
+381781695,734fb72a3a86c4565c0e7a43ea6ae470654cf287,,master,passed,Merge pull request #71 from guillerodriguez/textwidget
+
+Honour ICON_CUDDLE also if there is no text.,105,2018-05-21T17:34:49Z,381781696,push,mdb@samskivert.com,noreply@github.com
+379137973,b6746760b15a365745e8ea52f91f8a3e7c37738a,71,master,passed,Honour ICON_CUDDLE also if there is no text.,110,2018-05-15T09:57:05Z,379137974,pull_request,guille.rodriguez@gmail.com,guille.rodriguez@gmail.com
+377303236,a2d9008cc1fec9a706c83d499b5839cfbe386ac4,,master,passed,Merge pull request #70 from guillerodriguez/box
+
+Box.set(el) should remove element from its parent.,357,2018-05-10T14:26:06Z,377303237,push,mdb@samskivert.com,noreply@github.com
+377234975,c6dcbd0c340b61ad85b6ea7bff2eb28565c88890,70,master,passed,Box.set(el) should remove element from its parent.,327,2018-05-10T11:24:38Z,377234976,pull_request,guille.rodriguez@gmail.com,guille.rodriguez@gmail.com
+364777807,f3ce20e27b3d6ef95537f0acca4df777e3e19be5,,master,errored,[maven-release-plugin] prepare for next development iteration,179,2018-04-10T19:30:56Z,364777808,push,mdb@samskivert.com,mdb@samskivert.com
+364777777,cc87a57f9eb2ac396f732f055c480c79965c826f,,tripleplay-2.0.3,errored,[maven-release-plugin] prepare release tripleplay-2.0.3,162,2018-04-10T19:30:50Z,364777778,push,mdb@samskivert.com,mdb@samskivert.com
+364777738,cc87a57f9eb2ac396f732f055c480c79965c826f,,master,errored,[maven-release-plugin] prepare release tripleplay-2.0.3,73,2018-04-10T19:30:41Z,364777739,push,mdb@samskivert.com,mdb@samskivert.com
+364775100,8aee0fbeca39395efb10f92f2b008fcde3d4682f,,master,errored,Bump to PlayN 2.0.3.
+
+Having 2.0.2 and 2.0.2a was annoying because most builds want PlayN & TP to be
+on the same version.,67,2018-04-10T19:25:21Z,364775102,push,mdb@samskivert.com,mdb@samskivert.com
+358119317,ceb826ffe7a216faa4cbcc877c29156180202e01,,master,passed,[maven-release-plugin] prepare for next development iteration,136,2018-03-25T18:01:57Z,358119318,push,mdb@samskivert.com,mdb@samskivert.com
+358119303,24eec6e9a17503a5e6b09d5d69ea621e4aaaaf40,,tripleplay-2.0.2a,passed,[maven-release-plugin] prepare release tripleplay-2.0.2a,92,2018-03-25T18:01:51Z,358119304,push,mdb@samskivert.com,mdb@samskivert.com
+358117293,9ffa14ac25b0a74c3ab4805f4e919ff26cafe803,,master,passed,[maven-release-plugin] prepare for next development iteration,112,2018-03-25T17:55:01Z,358117294,push,mdb@samskivert.com,mdb@samskivert.com
+358117273,22bdd929eb586971c492a7dc647b605729c66f55,,tripleplay-2.0.2,passed,[maven-release-plugin] prepare release tripleplay-2.0.2,96,2018-03-25T17:54:55Z,358117274,push,mdb@samskivert.com,mdb@samskivert.com
+358117258,22bdd929eb586971c492a7dc647b605729c66f55,,master,passed,[maven-release-plugin] prepare release tripleplay-2.0.2,133,2018-03-25T17:54:51Z,358117259,push,mdb@samskivert.com,mdb@samskivert.com
+357546039,8d5958379716f64f78c6d79e0738b7d021389977,,master,errored,Merge pull request #68 from guillerodriguez/textwidget
+
+Fix bug with computed size when hintX is 0,46,2018-03-23T19:09:02Z,357546040,push,mdb@samskivert.com,noreply@github.com
+357533343,2992c97e750d783d9c83a64ec4e48c61e81abf16,68,master,errored,Fix bug with computed size when hintX is 0
+
+When computing size, hintX == 0 means that the available width is
+not known. In this case do not try to ellipsize or shrink the text.,52,2018-03-23T18:38:07Z,357533344,pull_request,guille.rodriguez@gmail.com,guille.rodriguez@gmail.com
+352976748,8286d8f025db944553a2e25c51beb63272473b16,,v2.0.2,failed,Updated docs for 2.0.2 release.,28,2018-03-13T18:13:19Z,352976749,push,mdb@samskivert.com,mdb@samskivert.com
+352973560,2d8415adb15b5c938ed716fefcaea1eba40863c5,,master,errored,[maven-release-plugin] prepare for next development iteration,71,2018-03-13T18:07:18Z,352973561,push,mdb@samskivert.com,mdb@samskivert.com
+352973511,2cb72a987d306e1e3c9108d18c9e513d71e82f35,,tripleplay-2.0.2,errored,[maven-release-plugin] prepare release tripleplay-2.0.2,50,2018-03-13T18:06:30Z,352973512,push,mdb@samskivert.com,mdb@samskivert.com
+352973486,2cb72a987d306e1e3c9108d18c9e513d71e82f35,,master,errored,[maven-release-plugin] prepare release tripleplay-2.0.2,43,2018-03-13T18:06:25Z,352973487,push,mdb@samskivert.com,mdb@samskivert.com
+328256354,4344ac6ae8748ab0e3982bb0914848bea9908f44,,master,passed,Factor shrink+ellipsize code out.
+
+Now that it's more than a three line loop, we don't want to repeat that much
+code.,129,2018-01-12T19:55:24Z,328256355,push,mdb@samskivert.com,mdb@samskivert.com
+328250754,218e33a36a73a31470be23fac624507be4618fb8,,master,passed,Merge pull request #67 from guillerodriguez/textlayout
+
+Improvements in handling of text in TextWidget,144,2018-01-12T19:38:32Z,328250755,push,mdb@samskivert.com,noreply@github.com
+326451706,af7278d9e7432525ece8b826c906b9f38b2ef498,67,master,passed,Add a new ELLIPSIZE style.
+
+Add support for clipping a text widget's text to fit into
+the horizontal space it has been alloted. Can be combined
+with AUTO_SHRINK.,118,2018-01-08T16:48:53Z,326451707,pull_request,guille.rodriguez@gmail.com,guille.rodriguez@gmail.com
+326443322,ce03c9d010c03a04370bcfe6b33821307f0c183e,67,master,passed,Auto-shrink: Make MIN_FONT_SIZE configurable.,72,2018-01-08T16:30:25Z,326443323,pull_request,guille.rodriguez@gmail.com,guille.rodriguez@gmail.com
+317777220,f2b5ac3fca0edcee9392cdbb4d71183cf030e5cb,,master,passed,Remove ye olde ios backend, add robovm backend.,182,2017-12-17T19:33:20Z,317777221,push,mdb@samskivert.com,mdb@samskivert.com
+317775435,73ac3371a64944896d74848593adf6c724ac7572,,master,passed,Need to create _sizeValue after _game is initialized.,93,2017-12-17T19:25:23Z,317775436,push,mdb@samskivert.com,mdb@samskivert.com
+317775323,42ee35774f9201f3d4873c47db5d7825f07ac3cc,64,master,errored,Remove ye olde ios backend, add robovm backend.,73,2017-12-17T19:25:09Z,317775324,pull_request,mdb@samskivert.com,mdb@samskivert.com
+317775319,333db922ffe412178d19ce9e2ae9e2acc86b9973,,2.1.x,errored,Remove ye olde ios backend, add robovm backend.,56,2017-12-17T19:25:27Z,317775320,push,mdb@samskivert.com,mdb@samskivert.com
+317763932,e6bed88bd1b12b133a8cde1f9854a0447d407792,64,master,errored,Use react.Function instead of java.util.function.Function.
+
+The latter is not supported by Android (until API 24) or RoboVM. Alas.
+
+Also fix one Keyboard.isKeyEvent -> Keyboard::isKeyEvent spot.,73,2017-12-17T18:42:34Z,317763933,pull_request,mdb@samskivert.com,mdb@samskivert.com
+317763907,7a0cfacec455f73339b6a0fc27428d6ca9bd9aad,,2.1.x,errored,Use react.Function instead of java.util.function.Function.
+
+The latter is not supported by Android (until API 24) or RoboVM. Alas.
+
+Also fix one Keyboard.isKeyEvent -> Keyboard::isKeyEvent spot.,54,2017-12-17T18:42:25Z,317763908,push,mdb@samskivert.com,mdb@samskivert.com
+317752297,7bd42cdd260389131e368066993be574f8a0b6f6,,master,passed,Some style tweaks.,136,2017-12-17T17:58:27Z,317752299,push,mdb@samskivert.com,mdb@samskivert.com
+317751637,8bed04461402bea4a467f36e7da2778d6e0d0d37,,master,passed,Merge pull request #66 from guillerodriguez/slider
+
+Add new BAR_ON_BACKGROUND style.,120,2017-12-17T17:55:31Z,317751638,push,mdb@samskivert.com,noreply@github.com
+316300995,45348b0958ee5a386aa949e87c634eb9fc60d396,66,master,passed,Make sure we don't use background layer after it is closed.,79,2017-12-14T08:24:05Z,316300996,pull_request,guille.rodriguez@gmail.com,guille.rodriguez@gmail.com
+316014985,40d17761a04e426e8c73f0b49a0579b312a3d0e8,66,master,passed,Make sure we don't close() backgrounds twice.,79,2017-12-13T18:01:10Z,316014986,pull_request,guille.rodriguez@gmail.com,guille.rodriguez@gmail.com
+315995271,25b76a3b81117fdf2211e594818486c2bfa8bfab,66,master,passed,Add new BAR_ON_BACKGROUND style.
+
+Define a new optional style to allow painting the "on" part of
+the slider bar with a different background than the "off" part.,88,2017-12-13T17:14:12Z,315995272,pull_request,guille.rodriguez@gmail.com,guille.rodriguez@gmail.com
+300477855,57f2e6ad31717d84008caf6e1fd6032c6970492a,64,master,errored,Converted to Java 1.8.
+
+Also adapted to 1.8-friendly changes in React and PlayN.,52,2017-11-11T03:36:38Z,300477856,pull_request,mdb@samskivert.com,mdb@samskivert.com
+300477776,27d3a94b5db2af5e4aee67d4a2e6fb20b0160736,,2.1.x,errored,Converted to Java 1.8.
+
+Also adapted to 1.8-friendly changes in React and PlayN.,45,2017-11-11T03:36:21Z,300477777,push,mdb@samskivert.com,mdb@samskivert.com
+300477774,2defcfb49898c1a51638f8839c7d3202838dc91d,,2.0.x,passed,Add a modal dialog demo.,62,2017-11-11T03:36:22Z,300477775,push,mdb@samskivert.com,mdb@samskivert.com
+293277837,2defcfb49898c1a51638f8839c7d3202838dc91d,,master,passed,Add a modal dialog demo.,118,2017-10-26T17:58:46Z,293277838,push,mdb@samskivert.com,mdb@samskivert.com
+279754510,c1713661252d53ebc52224554db1eaa873b5af6c,,master,passed,Build with Java 8.,106,2017-09-26T00:37:58Z,279754511,push,mdb@fb.com,mdb@fb.com
+279747177,5133f33170a5a26edf3495f21b16064220f70028,,master,errored,Pass Game to ScreenStack.Screen constructor.
+
+It is needed now during the base constructor to initialize _sizeValue,
+and this is a less fragile design anyhow. I had already made this switch
+with ScreenSpace, but never went back to fix ScreenStack.,168,2017-09-26T00:04:34Z,279747178,push,mdb@fb.com,mdb@fb.com
+279282724,240b6da6fd1941355df8ce60b5216b54794b17bb,,v2.0.1,failed,Updated docs for 2.0.1 release.,18,2017-09-24T19:43:16Z,279282725,push,mdb@samskivert.com,mdb@samskivert.com
+279281881,b472372d3c7f78858f1d15494c6889af93c76f48,,master,errored,[maven-release-plugin] prepare for next development iteration,38,2017-09-24T19:39:02Z,279281882,push,mdb@samskivert.com,mdb@samskivert.com
+279281864,1aa2a89946b0cfcfc190f345307314018ba6ab36,,tripleplay-2.0.1,errored,[maven-release-plugin] prepare release tripleplay-2.0.1,45,2017-09-24T19:38:56Z,279281865,push,mdb@samskivert.com,mdb@samskivert.com
+279281851,1aa2a89946b0cfcfc190f345307314018ba6ab36,,master,errored,[maven-release-plugin] prepare release tripleplay-2.0.1,40,2017-09-24T19:38:51Z,279281852,push,mdb@samskivert.com,mdb@samskivert.com
+279276226,77c96a18ad517fd492c45bd6b698bc9a9a65227d,,master,errored,Use new debugPrint() API.,104,2017-09-24T19:13:33Z,279276227,push,mdb@samskivert.com,mdb@samskivert.com
+279261152,f3e0ae6899c098c016c3a9e4cc1f2ce2f39860a6,,master,errored,Wire up debug rect stuff.,117,2017-09-24T18:11:51Z,279261153,push,mdb@samskivert.com,mdb@samskivert.com
+269312820,f1f226561de1b18da9cb13e61152fc58c104debb,,master,passed,Make the UI root sizes auto-update.,235,2017-08-28T19:06:52Z,269312821,push,mdb@samskivert.com,mdb@samskivert.com
+253256356,73067264b336a92c6d6d614d5db2fdbb06027a9f,,master,passed,Eliminate some pointless constraints here too.,118,2017-07-13T15:26:27Z,253256357,push,mdb@fb.com,mdb@fb.com
+251843835,d8f345b57598117c5abbfc354b0fff4e87bfd7f0,,master,passed,Update submodules to 2.1-SNAPSHOT.
+
+I'm leaving ios because it needs to be updated to RoboVM, so it's kind of dead
+code at the moment.,194,2017-07-10T01:38:07Z,251843836,push,mdb@samskivert.com,mdb@samskivert.com
+246359529,093b06df97f0ed02734d06c90f3cebc5190204b8,63,master,passed,Remove -XstartOnFirstThread parameter - it seems macos Java8 crashes otherwise,144,2017-06-23T20:47:41Z,246359530,pull_request,christoph.dietze@kurzdigital.com,christoph.dietze@kurzdigital.com
+239368276,d2978ed8974a2185aff1fb5bfb4d50aedf68c27b,,v2.0,failed,Updated docs for 2.0 release.,14,2017-06-04T19:04:45Z,239368277,push,mdb@samskivert.com,mdb@samskivert.com
+239359715,ed947c714c967c650a9dfa1cf6d42c0c17a08ef2,,master,errored,Add JCenter repo to make travis-ci happy.,57,2017-06-04T18:21:32Z,239359716,push,mdb@samskivert.com,mdb@samskivert.com
+239358717,a779493b11ecfc405d9d52f651aaf1b18d69fd79,,master,errored,[maven-release-plugin] prepare for next development iteration,45,2017-06-04T18:17:21Z,239358718,push,mdb@samskivert.com,mdb@samskivert.com
+239358669,7d4b50cc6987f8298a692b7d684acde80347ce60,,tripleplay-2.0,errored,[maven-release-plugin] prepare release tripleplay-2.0,59,2017-06-04T18:17:02Z,239358670,push,mdb@samskivert.com,mdb@samskivert.com
+239358662,7d4b50cc6987f8298a692b7d684acde80347ce60,,master,errored,[maven-release-plugin] prepare release tripleplay-2.0,43,2017-06-04T18:16:58Z,239358663,push,mdb@samskivert.com,mdb@samskivert.com
+239357291,31095faee200eddaacbe8d60012e3fe97ea9cb0b,,master,errored,Oops, wrong bintray URL.,42,2017-06-04T18:09:30Z,239357292,push,mdb@samskivert.com,mdb@samskivert.com
+239355992,431638767f50679ef865d233001b010e96ecd597,,master,errored,[maven-release-plugin] prepare for next development iteration,45,2017-06-04T18:02:24Z,239355994,push,mdb@samskivert.com,mdb@samskivert.com
+239355973,bb13f613cf7b1a9695eaa620320dc3e94dc691d6,,tripleplay-2.0,errored,[maven-release-plugin] prepare release tripleplay-2.0,42,2017-06-04T18:02:21Z,239355974,push,mdb@samskivert.com,mdb@samskivert.com
+239355965,bb13f613cf7b1a9695eaa620320dc3e94dc691d6,,master,errored,[maven-release-plugin] prepare release tripleplay-2.0,47,2017-06-04T18:02:16Z,239355966,push,mdb@samskivert.com,mdb@samskivert.com
+173926622,b8e9edd09d9008e6f65f5751dd7ad6ecc0004eb4,61,master,passed,Merge branch 'feature/bintray-support' into feature/bintray-deploy-support,203,2016-11-07T15:17:11Z,173926623,pull_request,raisercostin@gmail.com,raisercostin@gmail.com
+173925155,af20b3756a7d4a889e6c83aed4c1353bb68191d3,62,master,passed,Add temporary repo.,174,2016-11-07T15:11:47Z,173925156,pull_request,raisercostin@gmail.com,raisercostin@gmail.com
+173855030,cb65d46a8e2618a086020db188b6f1eb60f355ad,61,master,errored,Next snapshot version,33,2016-11-07T10:43:03Z,173855031,pull_request,raisercostin@gmail.com,raisercostin@gmail.com
+173854783,ca0cefbf423573c78395ea9bc8914a13dad2bf47,61,master,errored,Added bintray support.,304,2016-11-07T10:42:08Z,173854784,pull_request,raisercostin@gmail.com,raisercostin@gmail.com
+171261240,2155f74c5b2a9f877fe84d2a7716282569bb8487,60,master,errored,Added ios-bugvm deployment with simillar configuration to the playn-2.0 showcase.,160,2016-10-28T00:47:30Z,171261241,pull_request,costin.grigore@ext.ec.europa.eu,costin.grigore@ext.ec.europa.eu
+171128326,9efb11d7bf6952a00473d16ab63fe18c10d0e57a,60,master,errored,Configure maven for deployment to bintray.,41,2016-10-27T15:34:25Z,171128327,pull_request,costin.grigore@ext.ec.europa.eu,costin.grigore@ext.ec.europa.eu
+119553312,a1d3d4c22292c509b11ba68a871503c75bbfd7e8,,master,passed,Use -XstartOnMainThread when running Java backend.,169,2016-03-30T15:01:48Z,119553313,push,mdb@fb.com,mdb@fb.com
+118127597,378ff769fe2ae67f5210575140a2c5d0fb636c3f,,master,passed,Yikes, don't use TypedArray for primitives.
+
+Otherwise a bunch of heinous boxing occurs. Particularly heinous on the HTML5
+backend.,135,2016-03-24T00:40:36Z,118127598,push,mdb@samskivert.com,mdb@samskivert.com
+102272332,cf544348b8a5e2a56aeaa06ce009d8a17266d16c,57,master,passed,Remove AutoClosable to be compatible with Android prior API 19,71,2016-01-14T05:20:59Z,102272333,pull_request,tom.x.fisher@gmail.com,tom.x.fisher@gmail.com
+99166126,ecde0c86e77b28f56e1bc90eed8491d609893d9e,,master,passed,Back to snapshot.,94,2015-12-28T21:36:20Z,99166127,push,mdb@samskivert.com,mdb@samskivert.com
+99163539,0c95fc61209917f882b612b8429ee92ac1724824,,master,passed,[maven-release-plugin] prepare for next development iteration,83,2015-12-28T21:16:08Z,99163540,push,mdb@samskivert.com,mdb@samskivert.com
+99163534,e3888570aeddafa67f64f9fa30726a033b1bbba0,,tripleplay-2.0-rc3,passed,[maven-release-plugin] prepare release tripleplay-2.0-rc3,60,2015-12-28T21:16:09Z,99163535,push,mdb@samskivert.com,mdb@samskivert.com
+99163528,e3888570aeddafa67f64f9fa30726a033b1bbba0,,master,passed,[maven-release-plugin] prepare release tripleplay-2.0-rc3,81,2015-12-28T21:16:06Z,99163529,push,mdb@samskivert.com,mdb@samskivert.com
+99163057,b30ebd11eac2981e26229a2dfd4e63bbefc21910,,master,passed,The LWJGL TPPlatform only works with LWJGL2.,98,2015-12-28T21:12:12Z,99163058,push,mdb@samskivert.com,mdb@samskivert.com
+97066833,3d21c6af509acb7354235121aa54f6c648f4e2d3,,master,passed,Fix layer depth funny business, other tidying.,112,2015-12-15T20:07:56Z,97066834,push,mdb@samskivert.com,mdb@samskivert.com
+94318316,d00e11d68e240e16b71190329fb755ac8cabdd7e,,master,passed,Added ScreenSpace.bottom().
+
+When you want to blow away all screens, it's best to popTo(bottom) and then
+replace the bottom screen. That results in sane transitions for everyone
+involved.,86,2015-12-02T03:33:49Z,94318317,push,mdb@samskivert.com,mdb@samskivert.com
+93802064,41509648937f26137edaff297ec5a4e4ed0eec9d,,master,passed,Just pass the Game to the Screen ctor.
+
+You have to have the game in the super ctor anyway because you need to save it
+and return it in your own game() override, and we're not saving you from
+calling the super ctor because we needed the Platform.,96,2015-11-29T18:08:40Z,93802066,push,mdb@samskivert.com,mdb@samskivert.com
+92319404,e98fce61f301f3c02c3b53ed5777143a570f3121,,master,passed,Better docs for Timer.,83,2015-11-20T18:36:21Z,92319405,push,mdb@samskivert.com,mdb@samskivert.com
+91234252,9bfc7a958b64660a8c15906008d11c595ed6e345,,master,passed,Some Bag enhancements.,104,2015-11-15T15:30:01Z,91234253,push,mdb@samskivert.com,mdb@samskivert.com
+86673344,cb11cbe4d1fd75bfbe5834878811a34edd1947d4,,master,passed,Avoid double reporting entities.
+
+When we add a new system, we want to tell it about all "already added"
+entities, but we were telling it about all entities, even those that were
+themselves just added and which were about to be reported to all systems.
+
+Now we only tell new systems about existing entities, and then we tell all
+systems (including the newly added systems) about new entities.,89,2015-10-21T17:39:57Z,86673345,push,mdb@samskivert.com,mdb@samskivert.com
+85023848,ba422bab2c8177ff81a8bf690250b45d5e5fdede,,master,passed,Back to playn-2.0-SNAPSHOT.,87,2015-10-12T23:43:05Z,85023849,push,mdb@samskivert.com,mdb@samskivert.com
+85022536,6ba19c264203a52a34e30e876687e80809229ced,,master,passed,[maven-release-plugin] prepare for next development iteration,89,2015-10-12T23:30:59Z,85022537,push,mdb@samskivert.com,mdb@samskivert.com
+85022534,88b561cb987135b69149e3899bc568592e5ca78c,,tripleplay-2.0-rc2,passed,[maven-release-plugin] prepare release tripleplay-2.0-rc2,68,2015-10-12T23:30:51Z,85022535,push,mdb@samskivert.com,mdb@samskivert.com
+85022525,88b561cb987135b69149e3899bc568592e5ca78c,,master,passed,[maven-release-plugin] prepare release tripleplay-2.0-rc2,67,2015-10-12T23:30:52Z,85022527,push,mdb@samskivert.com,mdb@samskivert.com
+84714468,4441e88e9c30eeb4f86af70f83775a321d529bd2,56,master,passed,Fixing NPE when creating ships before full world initialisation.
+Error:
+Frame tick exception
+java.lang.NullPointerException
+	at tripleplay.demo.entity.AsteroidsDemo$AsteroidsWorld$2.paint(AsteroidsDemo.java:114)
+	at tripleplay.entity.System.paint(System.java:127)
+	at tripleplay.entity.World.paint(World.java:182)
+	at tripleplay.entity.World$2.onEmit(World.java:49)
+	at tripleplay.entity.World$2.onEmit(World.java:49)
+	at react.AbstractSignal$3.notify(AbstractSignal.java:65)
+	at react.Reactor.notify(Reactor.java:139)
+	at react.AbstractSignal.notifyEmit(AbstractSignal.java:60)
+	at react.Signal.emit(Signal.java:25)
+	at react.Signal$1.onEmit(Signal.java:35)
+	at react.AbstractSignal$3.notify(AbstractSignal.java:65)
+	at react.Reactor.notify(Reactor.java:139)
+	at react.AbstractSignal.notifyEmit(AbstractSignal.java:60)
+	at react.Signal.emit(Signal.java:25)
+	at playn.core.Game.paint(Game.java:73)
+	at playn.core.Game.onFrame(Game.java:97)
+	at playn.core.Game.access$000(Game.java:34)
+	at playn.core.Game$1.onEmit(Game.java:56)
+	at playn.core.Game$1.onEmit(Game.java:55)
+	at react.AbstractSignal$3.notify(AbstractSignal.java:65)
+	at react.Reactor.notify(Reactor.java:139)
+	at react.AbstractSignal.notifyEmit(AbstractSignal.java:60)
+	at react.Signal.emit(Signal.java:25)
+	at playn.core.Platform.emitFrame(Platform.java:124)
+	at playn.java.JavaPlatform.processFrame(JavaPlatform.java:198)
+	at playn.java.LWJGLPlatform.start(LWJGLPlatform.java:48)
+	at tripleplay.demo.TripleDemoJava.main(TripleDemoJava.java:66),84,2015-10-10T22:17:01Z,84714470,pull_request,kles4enko.andrey@gmail.com,kles4enko.andrey@gmail.com
+83972747,74a166b854c124295b9ef71a0ffea660caaf3d60,,master,passed,Make Action animation repeatable.
+
+Closes #55.,86,2015-10-06T20:35:04Z,83972748,push,mdb@samskivert.com,mdb@samskivert.com
+83954584,69d49aac4ecb87fd8721203a1fe47f98b89f0cac,,master,passed,Pack our PackedFrames image as part of the build.
+
+This demonstrates how to integrate FramePacker into Maven.,93,2015-10-06T19:07:14Z,83954585,push,mdb@samskivert.com,mdb@samskivert.com
+83939415,b2452494ffab948c1175ba5c16edef19de9fa85e,,master,passed,Build a jar-with-depends for tools.,84,2015-10-06T17:41:27Z,83939416,push,mdb@samskivert.com,mdb@samskivert.com
+83035386,2ee3ea7f2d3438af45e6812a21802b98915a5c3c,,master,passed,Make CheckBox a Togglable.
+
+This is a breaking API change, but it's pretty trivial to fix and there's no
+easy way to use deprecation to force a migration from a field (checked) to a
+method (selected). Score one for the universal access principle.,69,2015-10-01T00:24:45Z,83035387,push,mdb@samskivert.com,mdb@samskivert.com
+80496303,bed24ea2b97f0c6b0d77154591a7b81aa4fd5c1c,,master,passed,Cache Maven artifacts in Travis.,81,2015-09-15T19:03:14Z,80496304,push,mdb@samskivert.com,mdb@samskivert.com
+80495829,328f50d09c5923ef4dd2d643071ad9e898caf0b3,,master,passed,More info in Entity.toString().,80,2015-09-15T19:00:25Z,80495830,push,mdb@samskivert.com,mdb@samskivert.com
+80491687,da6b62f08c545194ecdecc0b94bdd59c46e8248f,,master,errored,Disposable -> Closeable.,66,2015-09-15T18:39:08Z,80491688,push,mdb@samskivert.com,mdb@samskivert.com
+79697449,b4fba790c3295623b76b51cf0d5a046ee19d6fe8,,master,passed,Provide width/height to Layers.solid.
+
+This will allow it to do something sensible when hit testing.,102,2015-09-10T17:03:50Z,79697450,push,mdb@samskivert.com,mdb@samskivert.com
+79311251,de9aff955997591a577176ad04e45b4201925cf5,,master,passed,Make the constraint assertion an assertion.
+
+That way developers who follow the recommendation of turning on assertions when
+developing in Java can discover this issue without us crashing their apps if
+they happen to ship with this new constraint in place.,102,2015-09-08T17:55:50Z,79311254,push,mdb@samskivert.com,mdb@samskivert.com
+79310463,680de87b817127397d7cf5622bc1bb2a3727eabc,,master,passed,Remove unnecessarily duplicated constraint.,102,2015-09-08T17:47:26Z,79310464,push,mdb@samskivert.com,mdb@samskivert.com
+79308953,40eba0d61ef889d8411a398dcc5e54925c62ed46,,master,passed,Disallow overwriting constraints.
+
+This is never the right thing and is almost certainly going to lead to
+unexpected behavior and confusion.
+
+Since we're still in the transition from 1.x to 2.x, and because this is very
+unlikely to affect "working" code, I don't feel quite so bad about introducing
+runtime freakoutery.,111,2015-09-08T17:34:12Z,79308954,push,mdb@samskivert.com,mdb@samskivert.com
+78786020,92c40360cb63662b56f06aa35ba4170b607b45f8,,master,passed,Nix cruft.,106,2015-09-04T16:25:39Z,78786021,push,mdb@samskivert.com,mdb@samskivert.com
+76486158,98084e41473e025c64236e3bafeb63f874da8e85,,master,passed,Slot -> SignalView.Listener for lambda-ability.
+
+See recent PlayN commit for blah blah blah about how we eventually won't need
+to do this.,100,2015-08-20T16:05:19Z,76486161,push,mdb@samskivert.com,mdb@samskivert.com
+72727578,43aef0e104b2d26605b1fcb092959961108322a4,,master,passed,Fix issues with popTo().,94,2015-07-26T17:59:45Z,72727579,push,mdb@samskivert.com,mdb@samskivert.com
+72060953,6c5fd02bd0bbed264ce1c0199d23613a041a8118,,master,passed,Blah, no clone in GWT.
+
+We'll leave a half-assed mechanism in place to customize transition times, but
+not the nice one I'd like to have had.,86,2015-07-22T05:02:26Z,72060954,push,mdb@samskivert.com,mdb@samskivert.com
+72038760,31071888a61907958fc3f95a5d47f69e71029f0b,,master,passed,Added initAdd() for pre-populating with screens.,100,2015-07-21T23:44:31Z,72038761,push,mdb@samskivert.com,mdb@samskivert.com
+72004677,d40ae32cafbef8d7e7b3981a9acf7dbe65dc63e9,,master,passed,De-enummed ScreenSpace.Dir, allowed duration config.,97,2015-07-21T19:49:04Z,72004678,push,mdb@samskivert.com,mdb@samskivert.com
+71849068,76f57e6eae3d0fb53e507e86920a664b0522274b,,master,passed,Nix ValueLabel use in demo.,97,2015-07-20T22:01:54Z,71849069,push,mdb@samskivert.com,mdb@samskivert.com
+71848950,637fd4e6314026103a450a9e7debb824f1506ab4,,master,passed,Deprecated ValueLabel. Added ValueView ctor to Label.
+
+Label now already does what ValueLabel does, with more flexibility (view
+bindText). So I added a ValueView ctor to Label (and made it take any type of
+value, which will be toString-ed), which makes Label as easy to use as
+ValueLabel.,137,2015-07-20T22:00:57Z,71848951,push,mdb@samskivert.com,mdb@samskivert.com
+70942841,f0b3dee9d96c3a0caedf6bc78689efd0e3653d89,,master,passed,A bit of LayoutData revampery, to simplify.
+
+Previously LayoutData had three jobs:
+
+1. Track any resolved style or ephemeral data which is needed to layout a
+widget. This stuff is only needed for layout, so we'd resolve it, compute
+preferred size, do the layout, then throw it away. That way we're not keeping
+around a bunch of crap for every single widget during normal operation.
+
+2. Use the resolved data to compute widget's preferred size, via
+LayoutData.computeSize().
+
+3. Use the resolved data to lay the widget out, via LayoutData.layout().
+
+But this sucked when you just wanted to make a minor tweak to computeSize() or
+layout() based on some non-ephemeral state. You had to create a special
+subclass of LayoutData just to hold the code that really should have been in
+the Element subclass instead.
+
+There was also some fiddly shenanigans with BaseLayoutData and LayoutData for
+probably stupid reasons that have long since been forgotten.
+
+Now there's just one LayoutData class, which defines two ("NOOP" by default)
+methods: computeSize() and layout(), and two Element methods (of the same name)
+which delegate to the LayoutData methods by default.
+
+In cases where a simple tweak is needed (Box, Composite, GlyphWidget,
+ImageButton), no custom LayoutData class is needed at all. The Element
+subclasses just override the methods that would have delegated to LayoutData
+and do the right thing right there. Simple!
+
+In one case (Scroller), ScrollerLayoutData is used to track some ephemeral
+data, but we still handle the computeSize() and layout() in Scroller's methods
+rather than ScrollerLayoutData's methods (mainly because we're specializing
+Composite/Container, which now do their layout in Element.layout).
+
+In a few other cases (TextWigdet, Slider), we still do things the "old" way,
+where TextWidgetLayoutData and SliderLayoutData implement computeSize() and
+layout() directly, because they resolve a shit ton of layout data and it's nice
+to be able to access that stuff directly via the this pointer.
+
+I was tempted to convert everything to "Scroller"-style where all LayoutData
+subclasses were just structs that held extra data and all custom logic went
+into the Element subclass, but I needed to preserve the old LayoutData methods
+and behavior for all the custom code out in the wild that has created its own
+LayoutData subclass. So since that has to live on, I might as well use it in
+the few cases where it's tidier.,109,2015-07-14T17:37:37Z,70942842,push,mdb@samskivert.com,mdb@samskivert.com
+70446183,25225ac98c0b3a9d62be0f4e9edaeb2bd58c321f,,master,errored,Send modifier info with events.,63,2015-07-10T20:54:05Z,70446184,push,mdb@samskivert.com,mdb@samskivert.com
+68842076,40a2cd9bbd7d6d81a6fa378e087b9f8ff1e3b33d,,master,passed,Pruned unused imports.,112,2015-06-29T17:15:40Z,68842081,push,mdb@samskivert.com,mdb@samskivert.com
+68731463,16d767794e13ba43950b5442361e41cf750e444b,,master,passed,Only add rowgap if rowHeight > 0.
+
+Previously even if all elements in a row were non-visible, an unnecessary
+rowgap was still being inserted.,117,2015-06-28T21:44:18Z,68731464,push,mdb@samskivert.com,mdb@samskivert.com
+68730613,48efffdb74e5b01cddd79fdf51f4030e464b71dd,,master,passed,Fail fast.,110,2015-06-28T21:34:40Z,68730614,push,mdb@samskivert.com,mdb@samskivert.com
+67909192,352adc80c65e6ccf4e681e1310f0bcd1ee746192,,master,passed,Added varlong to Inflater/Deflater.,120,2015-06-22T21:31:04Z,67909193,push,mdb@samskivert.com,mdb@samskivert.com
+67907061,11aa68ecd346e123d9604535e257ae921581eb39,,master,passed,Added doc comment, clarification re: who uses what.,140,2015-06-22T21:21:24Z,67907062,push,mdb@samskivert.com,mdb@samskivert.com
+67906814,ea97b6d9e47b55eab65c083718816b89867042c5,,master,passed,Fixed indent.,160,2015-06-22T21:11:45Z,67906815,push,mdb@samskivert.com,mdb@samskivert.com
+66263609,04f6a916a0f369c29cc5a501a97f39420cc98cb1,,master,errored,Added some toStrings for debuggery.,30,2015-06-10T18:37:40Z,66263610,push,mdb@samskivert.com,mdb@samskivert.com
+66150689,6580d7a0e2fda773c3a7e0f4f1bbde051cc8ef60,,master,errored,Beans/frank.,20,2015-06-10T02:40:38Z,66150690,push,mdb@samskivert.com,mdb@samskivert.com
+66139499,372382d25d503e4906bbb1509dcf50bdc2e4c2c6,,master,errored,Element can now track bindings to reactive values.
+
+This allows the element to establish a connection when it is added to a UI
+hierarchy and dispose of it when it is removed. Doing so relieves the caller of
+managing the lifetime of the connection themselves, which is error-prone and
+leaky.
+
+Often the lifetime of a reactive value and a UI element that displays it do not
+coincide, and the reactive value long outlives the element, which results in
+leaks if special care is not taken to ensure that connections are closed when
+the element goes away. This bind mechanism makes that easy to do, syntactically
+concise, and cheaper than creating a Closeable.Set and binding it to the
+element's hierarchy signal (which was the only general purpose way to do this
+before this change).,24,2015-06-10T00:22:04Z,66139500,push,mdb@samskivert.com,mdb@samskivert.com
+65962694,d8adc96b0cc70d31e655a5f30aa4bf13fac065cd,,master,passed,Add setText/setIcon.
+
+Sometimes you want to set these things fluently, after the fact.,166,2015-06-08T21:50:23Z,65962695,push,mdb@samskivert.com,mdb@samskivert.com
+65284111,163990c3e619522ad78d52863ed5c5e48cb0a41f,,master,passed,Only bind to our value when we're added to the UI.
+
+This allows us to display values which outlive our UI without worrying that
+garbage views will keep listening and responding to value changes.,167,2015-06-03T17:55:46Z,65284112,push,mdb@samskivert.com,mdb@samskivert.com
+64961766,dfe289506d8299868ffab7750cfedc54edfae07c,,master,passed,Make our top-level screen absorb hits.
+
+This is necessary for the untrans listener to work in all circumstances.
+Previously we were relying on a UI to be catching all events at some level, but
+we won't always have a UI, or we may also have a UI with no interactive bits.,145,2015-06-01T18:43:51Z,64961767,push,mdb@samskivert.com,mdb@samskivert.com
+64959117,d026b9c2e778678b303f3bb30416ecc4c8728f5d,,master,passed,Name screen and element layers.,149,2015-06-01T18:25:29Z,64959118,push,mdb@samskivert.com,mdb@samskivert.com
+64935753,fbbf19afefcb003bb52c07ddcb32f58b9c1faae1,,master,passed,We have to pass Platform to ctor.
+
+Normal UIScreen impls will not be able to provide a non-null value from game()
+while the super ctor is being called.,138,2015-06-01T15:56:59Z,64935754,push,mdb@samskivert.com,mdb@samskivert.com
+63042360,726da294224869cc63d423be7b58246593b710e7,,master,passed,Split convert-flump-plugin out of tools.
+
+Now we have a proper tripleplay-tools artifact, rather than the
+tripleplay-tools submodule being a Maven plugin, which was wacky.
+
+This commit also includes a bit of POM name tweaking (Triple Play -> TP).,179,2015-05-18T16:38:02Z,63042361,push,mdb@samskivert.com,mdb@samskivert.com
+61184540,f28258fb68308c15e258a19ce243c67aa87209ee,,master,errored,Fixed Android & HTML demo backends.
+
+Still need to convert ios to robovm...,48,2015-05-04T18:29:44Z,61184542,push,mdb@samskivert.com,mdb@samskivert.com
+61182971,3572a29e739dead5e109ade88cc5f0473ff50b2d,,master,errored,Fixed some missed spots in the 2.0 upgrade.,41,2015-05-04T18:05:03Z,61182972,push,mdb@samskivert.com,mdb@samskivert.com
+61178495,426e61ce61fdae667ba3ed0527aad02bdbf291b2,,master,errored,Don't call game() in UIScreen ctor.
+
+Any civilized UIScreen derivation is going to get its own Game in its own ctor
+and can't stuff that Game into a field in time for it to be visible to the
+super ctor.,42,2015-05-04T17:29:11Z,61178496,push,mdb@samskivert.com,mdb@samskivert.com
+59432026,11dfb01f0f7347b9a21db65dbb5fcd72be2a6486,,master,errored,Fix bug when popping top screen.,40,2015-04-21T21:55:28Z,59432027,push,mdb@samskivert.com,mdb@samskivert.com
+59070734,c624ddb1b4ab94a445f2fcc812dee0e46d8698d7,,master,errored,Back to tracking snapshot.,101,2015-04-18T22:31:27Z,59070735,push,mdb@samskivert.com,mdb@samskivert.com
+59070210,5049f386b04f5135ec06627eed3d8663cc0d2367,,master,passed,[maven-release-plugin] prepare for next development iteration,86,2015-04-18T22:25:38Z,59070211,push,mdb@samskivert.com,mdb@samskivert.com
+59070104,309485f7fbfafe0a719fa8d7dccd63d62a486ac0,,tripleplay-2.0-rc1,passed,[maven-release-plugin] prepare release tripleplay-2.0-rc1,59,2015-04-18T22:24:22Z,59070108,push,mdb@samskivert.com,mdb@samskivert.com
+59070102,309485f7fbfafe0a719fa8d7dccd63d62a486ac0,,master,passed,[maven-release-plugin] prepare release tripleplay-2.0-rc1,127,2015-04-18T22:24:39Z,59070103,push,mdb@samskivert.com,mdb@samskivert.com
+59069917,9d97b801538db0bacd77f6932caa7b148d1c136b,,master,passed,Javadoc fixes.,106,2015-04-18T22:21:50Z,59069918,push,mdb@samskivert.com,mdb@samskivert.com
+59068512,862dc4828e87f4b4183df072a539d91fecb38983,,master,errored,java, swt-java -> java-lwjgl, java-swt.
+
+This matches the new naming scheme in use by PlayN.,99,2015-04-18T22:01:14Z,59068513,push,mdb@samskivert.com,mdb@samskivert.com
+58894186,4911f955aec8b433925bf852f39308adb4242e9d,52,master,errored,Accommodating the modifier changes in https://github.com/threerings/playn/pull/81,96,2015-04-17T11:37:44Z,58894187,pull_request,dolb90@gmail.com,dolb90@gmail.com
+53841697,ce6a6b1a341ee3a9514c000f7afcf2335a3407c3,,v1.9,failed,Updated docs for 1.9 release.,22,2015-03-10T18:41:34Z,53841698,push,mdb@samskivert.com,mdb@samskivert.com
+53836902,31557f71ddb172878c47d798fa369af3dfcaa68c,,master,passed,[maven-release-plugin] prepare for next development iteration,231,2015-03-10T18:01:49Z,53836903,push,mdb@samskivert.com,mdb@samskivert.com
+53836872,dc2ce7e060710b2527c0816b331bd2106542326e,,tripleplay-1.9,passed,[maven-release-plugin] prepare release tripleplay-1.9,124,2015-03-10T18:00:59Z,53836873,push,mdb@samskivert.com,mdb@samskivert.com
+53836846,dc2ce7e060710b2527c0816b331bd2106542326e,,master,passed,[maven-release-plugin] prepare release tripleplay-1.9,157,2015-03-10T18:01:47Z,53836847,push,mdb@samskivert.com,mdb@samskivert.com
+53836397,0d68c979cd6aeea84f7439007968e252ee74f9ac,,master,passed,A whole heap of Javadoc fixes.,117,2015-03-10T17:58:01Z,53836398,push,mdb@samskivert.com,mdb@samskivert.com
+53833758,a2d24a28ac7ea30ae00a5c0d28e8272ba9ed7cc6,,master,passed,Slightly more flexible capturing.,188,2015-03-10T17:37:50Z,53833759,push,mdb@samskivert.com,mdb@samskivert.com
+53833745,8d71b449c2b14871a5a93a6b823b39efc6d93ccb,,twodotoh,passed,First frame hack. Sigh.,110,2015-03-10T17:36:58Z,53833746,push,mdb@samskivert.com,mdb@samskivert.com
+52213470,dbcfb717923ae29268a2c5f859eb2578959d7f6a,,twodotoh,passed,Put all of our adjustments in computeSize().
+
+preferredSize() just handles caching the computed size. This only affects Box
+which calls computeSize directly and needs all the adjustments to have been
+properly applied.,89,2015-02-26T00:55:12Z,52213471,push,mdb@samskivert.com,mdb@samskivert.com
+52208739,c4a1ac5bb30edea24aeb8a8eed168355433c1b1f,,twodotoh,passed,Allow transition reuse, report completedness.,64,2015-02-26T00:12:22Z,52208740,push,mdb@samskivert.com,mdb@samskivert.com
+52071276,6b3f606a9a10b5e134e805c011d4255af56f995b,,twodotoh,errored,Two Box related items:
+
+1. Added Box.Clipped for when you want a box that clips its child.
+
+2. Added Box.transition() to allow you to transition the contents of a box to a
+   new element via (currently) either a fade or a flip.
+
+There's probably a more general way to allow these sorts of transitions lurking
+somewhere in the infinite design space, but nothing is jumping out at me right
+now, so I'm going to live with yet another incarnation of these same ideas
+(c.f. ScreenStack, ScreenSpace).,73,2015-02-25T00:54:49Z,52071277,push,mdb@samskivert.com,mdb@samskivert.com
+50079317,29ffc2fe525aa1c19c566eb0345aa12ee9fe2ebf,,twodotoh,errored,More scale -> scale().,117,2015-02-09T16:42:34Z,50079318,push,mdb@samskivert.com,mdb@samskivert.com
+50078028,90886201385b3a24c895169d40e5cd1e5cd6988e,,twodotoh,errored,Expose transPct and target screen.
+
+This makes it easier when you need to key other animations on the screen
+transition as well.,83,2015-02-09T16:35:18Z,50078029,push,mdb@samskivert.com,mdb@samskivert.com
+49610736,16ed83939147ce713c3e239d2133ef381c439b7d,,twodotoh,passed,Provide access to the focused screen.,126,2015-02-05T15:10:39Z,49610737,push,mdb@samskivert.com,mdb@samskivert.com
+48813458,aeb40491c4d74604ac10044fc77d369b40a4a958,,twodotoh,passed,Report whether a state is enabled and selected.,141,2015-01-29T21:00:43Z,48813459,push,mdb@samskivert.com,mdb@samskivert.com
+48725084,14aa0515e64f1dd460c2bf239fa94174e54d8dc6,,twodotoh,passed,Need to activate first screen.,91,2015-01-29T06:33:54Z,48725085,push,mdb@samskivert.com,mdb@samskivert.com
+48724476,ea1125c4b1d4cb1a38d17d9f5c9946fb9874a6dc,,twodotoh,passed,Need _onPointer to start as NOOP.,93,2015-01-29T06:20:59Z,48724477,push,mdb@samskivert.com,mdb@samskivert.com
+48697348,cfb4ed3e5c4e07f6e2563e2e6ca5467356c5e9e4,,twodotoh,passed,Use TileSource for all image backgrounds.
+
+I swear I already did this, but maybe not.,116,2015-01-28T23:38:25Z,48697349,push,mdb@samskivert.com,mdb@samskivert.com
+48697174,6067217cf7f0f612d3c44ac2962ef1395d8d5de1,,twodotoh,passed,More Texture -> Tile.
+
+Note we didn't change tiled() because that has to take a Texture because it
+repeats. Can't repeat a region of a texture.,87,2015-01-28T23:35:11Z,48697175,push,mdb@samskivert.com,mdb@samskivert.com
+48696892,88d10ed47cded35fdd302050d72110f7c7df1d0b,,twodotoh,passed,Work with Tile not Texture.,115,2015-01-28T23:33:23Z,48696893,push,mdb@samskivert.com,mdb@samskivert.com
+48691745,109efd6f3fb020ef61c1fbc6b85f3955038ff63d,,twodotoh,passed,We don't need to burden subclasses with a Graphics ctor arg.,101,2015-01-28T22:48:41Z,48691746,push,mdb@samskivert.com,mdb@samskivert.com
+48664138,dad42a7d472cab2931cc403c9939ebd9f2075a8b,,twodotoh,errored,Fix NPE; changed tests to use async sources.,22,2015-01-28T19:18:23Z,48664139,push,mdb@samskivert.com,mdb@samskivert.com
+48663562,2eb707557a164f7f775e73d9107f5aebe3364454,,twodotoh,errored,Have Simple and PackedFrames work with TileSource.,42,2015-01-28T19:13:24Z,48663563,push,mdb@samskivert.com,mdb@samskivert.com
+48654754,6b25908540a31850bd077fdc61a69a3a4e4bbfda,,twodotoh,errored,A bunch more POM fixes.
+
+Disabled ios module until it can be ported to robovm.,43,2015-01-28T18:01:21Z,48654755,push,mdb@samskivert.com,mdb@samskivert.com
+48654470,c9cf23ccaf782165ee8ebe1c4114fc6673843c5c,,twodotoh,errored,Nixed unused field.,25,2015-01-28T17:55:00Z,48654471,push,mdb@samskivert.com,mdb@samskivert.com
+48647219,45f5ac8134a97777558063f2e3f72df5fc66e27b,,twodotoh,errored,Use new io.playn groupId.,26,2015-01-28T17:07:21Z,48647220,push,mdb@samskivert.com,mdb@samskivert.com
+47734051,c6c7a258cf96f00ae9c5f9f027bfde27a3c245aa,,twodotoh,errored,Use LayerUtil.bind().,26,2015-01-21T02:45:50Z,47734052,push,mdb@samskivert.com,mdb@samskivert.com
+47662657,e19c8c711f6391934f520ea1b796ba798383eb98,,twodotoh,errored,Converted to PlayN 2.0.
+
+Nothing like converting 37,000+ lines of code to really drive home whether your
+refactorings are a good idea or not. This looks pretty good though:
+
+ 169 files changed, 3010 insertions(+), 5048 deletions(-),24,2015-01-20T15:50:45Z,47662659,push,mdb@samskivert.com,mdb@samskivert.com
+45365861,059d0cffb99b6d84e0a10c45f304a99b63ec68ec,,master,passed,Nix some debug logging.,184,2014-12-29T16:12:45Z,45365862,push,mdb@samskivert.com,mdb@samskivert.com
+45365309,1b56a439c2cebb86626f4d92f3e463c251b5cbf8,,master,passed,Introduced wasValidated(). Blah.
+
+We can't just hook layout() because then we emit the _validated signal *before*
+we mark the Root as validated. So if the validated signal results in any
+changes being made to the UI, those won't trigger a new validation cycle as
+they should.
+
+So we have to have a wasValidated() hook which is called after validated is set
+to true, so that we can invalidate in wasValidated. Messy.,172,2014-12-29T16:07:48Z,45365310,push,mdb@samskivert.com,mdb@samskivert.com
+45361922,480d982e0c533c720d761e23556b43ba7e412f04,,master,passed,Fixed wake issue, added asserts, stubbed IN/OUT.,199,2014-12-29T15:30:42Z,45361923,push,mdb@samskivert.com,mdb@samskivert.com
+45360294,c8ab849f3db10bcbd5cb4c451c8bb7bd47aaf5ed,,master,passed,Emit validated after layout(), not validate().
+
+The latter is called every frame to check whether we need validation, the
+former is called only when we actually need validation.,192,2014-12-29T15:10:32Z,45360295,push,mdb@samskivert.com,mdb@samskivert.com
+45183806,6a1ee414554a01693b9fe63f0542b391473d8eba,,master,passed,A bit of DWIM wrt the first frame of a transition.,171,2014-12-26T23:25:15Z,45183807,push,mdb@samskivert.com,mdb@samskivert.com
+45180033,dd5080136246532320f53cb188c349dad9a88712,,master,passed,New navigation mechanism: ScreenSpace.
+
+This is a bit like ScreenStack, but different enough to not really benefit from
+sharing code. A ScreenSpace provides an infinite 2D grid metaphor, where new
+screens slide in from a direction, and the user then goes "back" by sliding the
+current screen back in the direction from whence it came.
+
+Care has been taken to allow a ScreenSpace to interact comfortably with screens
+that scroll (via Flicker). So you can, for example, scroll a new screen UP into
+view, then then allow the user to continue scrolling up to see the whole
+scrolled screen. But if they scroll DOWN while looking at the top of the
+screen, this initiates an untransition gesture which takes them back to the
+previous screen.
+
+Naturally when you transition screens orthogonally to the main scroll direction
+(slide new screen in LEFT and then scroll up and down), things work nicely as
+well.
+
+This is not yet totally complete. There are some non-space transitions to be
+implemented (IN/OUT which will zoom and cross fade to simulate going INto our
+OUT of the plane, and FLIP, which will work like ScreenStack's flip). These
+non-space transitions will not afford user initiated untransition gestures, so
+in those cases the app will have to provide back buttons, as usual. But it's
+nice to have the option to include non-spatial transitions where they make
+sense.
+
+I'm also going to support a horizontally scrolled, but snapped to contents,
+style UI screen where the screen supports an arbitrary number of UI Roots each
+of which is laid out vertically, and the user can use sliding gestures to go
+left and right between them. Naturally, this will be set up so that if you want
+you can have a leftward slide from the left-most column initiate an
+untransition to the previous screen if that's how these screens came in, or you
+can transition vertically into a left/right navigable screen, and have the user
+go UP to get out of it (which is nice because they can use UP regardless of
+which column they're in).,188,2014-12-26T22:16:39Z,45180034,push,mdb@samskivert.com,mdb@samskivert.com
+44876928,ac7247e01eb99f5fbcc2fcf9794f9aaad1ab91b6,,master,passed,More Guava removal.,193,2014-12-22T22:03:50Z,44876929,push,mdb@samskivert.com,mdb@samskivert.com
+44874649,0040528a54a5236caa81c99805be18c27553401d,,master,errored,Omit use of Guava.
+
+playn-java no longer provides it. Net -3 LOC anyway.,118,2014-12-22T21:43:20Z,44874651,push,mdb@samskivert.com,mdb@samskivert.com
+44860979,b99786ec588d3d9cd21a46ff80a8379645420ce5,,master,errored,Added a demo for the interpolators.
+
+Useful to ensure that one doesn't botch them during a refactor. :),110,2014-12-22T19:42:01Z,44860980,push,mdb@samskivert.com,mdb@samskivert.com
+44270781,cafe292a9605a97b6e8ca3c612586924837925f0,,master,passed,Import pruning.,199,2014-12-16T23:13:19Z,44270782,push,mdb@samskivert.com,mdb@samskivert.com
+42278561,7fdc0f4f37882d9a7f7328022b1560cb882ed809,50,master,passed,make captured root's children interactive,121,2014-11-27T07:51:18Z,42278562,pull_request,rsennov@corp.finam.ru,rsennov@corp.finam.ru
+39215831,12a777eb8229e3f1151abd100356444c03b57bdd,,master,passed,Wrap long line.,180,2014-10-28T00:26:32Z,39215832,push,mdb@samskivert.com,mdb@samskivert.com
+36198686,cb97ae6ddb673209f278740cb4902d4f9bb69a87,,master,passed,Revert "Fixed compilation issue with Java 1.6"
+
+This reverts commit 975b2e93f877e3dde9151f3c7c5197e96130e69c.,219,2014-09-24T21:34:35Z,36198687,push,bryanchacosky@gmail.com,bryanchacosky@gmail.com
+36098861,975b2e93f877e3dde9151f3c7c5197e96130e69c,,master,passed,Fixed compilation issue with Java 1.6,129,2014-09-23T22:24:36Z,36098862,push,bryanchacosky@gmail.com,bryanchacosky@gmail.com
+35388669,1a0bd5e254513a796b4d72d544ac407f4ac04826,,master,passed,Added synchronous methods to Flump loaders,129,2014-09-15T23:39:25Z,35388670,push,bryanchacosky@gmail.com,bryanchacosky@gmail.com
+30124795,a3d7f15406b3d69a82036af25e7cd4087dfa2f6c,,master,passed,Fix origin for scaled icons.
+
+I don't really know how origins work with other transformations, but this seems to work better.,156,2014-07-16T23:41:38Z,30124796,push,jamie@threerings.net,jamie@threerings.net
+30091587,aa87bb8a6666e914e8444368c2d85a3103a8e388,,master,passed,Oops, make that a dimension instead.
+
+I should've read my app's FatScroller code first. I knew it was doing something like this, but
+figured it was a uniform fatness.,209,2014-07-16T17:09:31Z,30091588,push,jamie@threerings.net,jamie@threerings.net
+30089435,43236ace9d7ab3acf820aa7b24da1eaec94f3b4c,,master,passed,Allow changing the buffer for updateVisibility.,242,2014-07-16T16:47:28Z,30089436,push,jamie@threerings.net,jamie@threerings.net
+29343426,2127a74daf080b9dd74a591e4068fb648fd5fb28,,master,passed,Nix bogus relativePath.,304,2014-07-07T18:09:02Z,29343427,push,mdb@samskivert.com,mdb@samskivert.com
+27256864,e4f6164f4e2d43cf16eb9104b378c4d40c4f8bc7,,master,passed,Option for ignoring unchanged flump libs.
+
+Also, as I was driving by, made it a maven plugin. I think this is the right thing to do and that
+no one else is using binary flump libs. But, if it does bother anyone, we could have a library with
+the command line interface and the maven plugin could depend on that.
+
+NOTE for IDE users: the artifact id changed, which sometimes means you need to reimport.,163,2014-06-10T21:05:21Z,27256865,push,jamie@threerings.net,jamie@threerings.net
+27129770,48f753b9ff9605c2ac3e7aa19e2942a12d80174f,,master,passed,Simplified.
+
+I think this was being overthought. ImageLayer is capable of being told its
+dimensions and rendering nothing "at that size" until the image is ready. No
+need to bring in a GroupLayer.,165,2014-06-09T13:37:41Z,27129771,push,mdb@samskivert.com,mdb@samskivert.com
+27048179,d6f02a7e000c6804017b69da037ff8417764e712,,master,passed,Set the size for Icons.Loader ImageLayer's.
+
+https://github.com/threerings/tripleplay/issues/47
+
+The suggested fix would work but would also make things more confusing. The setSize call in
+Preloader would have no effect because ImageLayer takes it's size from the image by default.
+
+So instead, change the class hierarchy to reflect what Preloaded and Loader really have in common,
+then add the setSize call in Loader, where it's really needed.,104,2014-06-08T04:34:42Z,27048180,push,jamie@threerings.net,jamie@threerings.net
+25957515,3be559c41f871af5b9a6444888d947007c10cbb4,,master,passed,Fix relative path.
+
+Without this override of the default .., maven 3.2.1 prints out a slew of warnings when loading
+the project.,136,2014-05-24T20:29:09Z,25957516,push,jamie@threerings.net,jamie@threerings.net
+24586370,b6dcab3a80d82db630f25859ad8e36f236ccca54,,master,passed,Add a comment about a limitation of the frame stepping in Movie.,186,2014-05-07T00:37:15Z,24586371,push,mthomas@threerings.net,mthomas@threerings.net
+24584204,47a1fb7a11cdd2c6ee9b45e0c355d808c14f4bd4,,master,passed,Fix a bug in flump Movie where when a new symbol appeared on a keyframe, it didn't reset it.
+
+Specifically, in flash, removing a symbol, then adding it again later, will always reset that symbol to the start of its own timeline, so flump should do this too. Making the symbol invisible but leaving it on the timeline, however, will NOT reset it.,148,2014-05-06T23:48:58Z,24584205,push,mthomas@threerings.net,mthomas@threerings.net
+24562427,8128bf8dfd5a4c8c26ee7abf3be9786f2c06fb10,,master,passed,Fix bug in handling the end-of-movie in MoviePlayer.PlayAnimation
+
+In particular, it wasn't recognizing when the movie had been stepped through all the way to the end, was allowing the movie to loop around and play its first frame before noticing it was ready to be removed.,252,2014-05-06T19:03:15Z,24562428,push,mthomas@threerings.net,mthomas@threerings.net
+23984938,428588e3dea2ce19719fed98345b1c442033b306,,master,passed,Drive by compaction.,206,2014-04-29T02:44:06Z,23984939,push,jamie@threerings.net,jamie@threerings.net
+23731686,1e9a12f48df9fcd9806e91a52a8d2375cbcd31f1,,master,passed,Avoid calling Icon.render multiple times.
+
+This is a big win for composited icons, especially if the layout changes.,211,2014-04-25T06:19:23Z,23731687,push,jamie@threerings.net,jamie@threerings.net
+23616594,5f502e2f53c44c0c604c01e10c8424d0c5f6c7df,,master,passed,Fix text wrapping in background demo.,184,2014-04-23T18:57:55Z,23616595,push,jamie@threerings.net,jamie@threerings.net
+23566024,40d9bc1bfa2ae02fd31877b25ae0e2d1fba863df,,master,passed,Revert "Depend on demo assets for ios build."
+
+This reverts commit c3a73ff72668e1c0b1b268ba3e6ad4adfd66b346.
+
+As Michael pointed out, there is no reason to actually build the assets for ios, so no dependency
+is needed.,147,2014-04-23T05:03:10Z,23566025,push,jamie@threerings.net,jamie@threerings.net
+23553527,c3a73ff72668e1c0b1b268ba3e6ad4adfd66b346,,master,passed,Depend on demo assets for ios build.
+
+Now it's easy to build all required projects using mvn -am.,174,2014-04-22T23:32:54Z,23553528,push,jamie@threerings.net,jamie@threerings.net
+23543923,abb0695f220fed7e13452f983ac1cc5d5859caf8,,master,passed,Inherit from the playn delegate.
+
+Well... golly, that'd be an important detail in demonstrating correct usage. And since the playn
+lifecycle changes, it is truly required.,243,2014-04-22T21:00:38Z,23543924,push,jamie@threerings.net,jamie@threerings.net
+22625459,0bb06d7d23a4afc2fd9e7965efc0aca85c1c3f8e,,master,passed,Don't calculate the frame for the movie unless we have to,192,2014-04-09T17:08:56Z,22625460,push,bryanchacosky@gmail.com,bryanchacosky@gmail.com
+22542002,3e87b7c9bfcda0d95af41b157aa691d2c6a486fa,,master,passed,Make fancy things like scrolling menus work in the demo.,151,2014-04-08T16:31:01Z,22542003,push,jamie@threerings.net,jamie@threerings.net
+22149906,65919857eb36ac5d90b078e1374c63814caa7f4e,,master,passed,Emit signals for frames in flump movies.,149,2014-04-03T00:48:16Z,22149907,push,karma@deadmoose.com,mthomas@threerings.net
+21635465,dfb006b04aa8dd6cf445e06d4da3f1ebe5fd03d9,,master,passed,bounds.height should be calling adjustHeight, not adjustWidth,204,2014-03-26T23:27:10Z,21635466,push,bryanchacosky@gmail.com,bryanchacosky@gmail.com
+21524318,03ddc0c9fd4858a86fde673807b8ec3cb57a5d4f,,master,passed,Let's test Animation.complete(), just for giggles.,208,2014-03-25T17:16:10Z,21524319,push,mdb@samskivert.com,mdb@samskivert.com
+21449928,a1a4b3e38d212dd09feafc44422a74dd44eabce4,,master,passed,Let's just do this right now so that there are no gotchas later.
+
+Why do I have to argue for this?
+HashSet is already a wrapped Map. This is more performant.
+This looks a bit uglier but this is exactly the kind of thing that
+an identity map is used for.,222,2014-03-24T18:59:36Z,21449930,push,ray@threerings.net,ray@threerings.net
+21442429,1dd46e40a8b51dad2287599171a088d6a7e40d01,,master,passed,Simpler. Courtesy of Ray.,252,2014-03-24T17:16:27Z,21442430,push,mdb@samskivert.com,mdb@samskivert.com
+21437800,9ea319b1859dada0b8f62ab996f9a6da18ecf720,,master,passed,Missed a spot.,191,2014-03-24T16:14:25Z,21437801,push,mdb@samskivert.com,mdb@samskivert.com
+21437552,a43e4c858d92629ef184e06eae65405f8bc4d0fe,,master,passed,Vastly simplified animation completion.
+
+Firstly, the logic was scattered all over the damned place and the copies
+weren't consistent. AnimGroup was checking canceled, but Animation wasn't. The
+duplication is now gone and the logic is necessarily consistent because it only
+exists once.
+
+I changed the canceled check to cause things to blow up. Either you cancel()
+your animations or you complete() them. You don't mix and match. There's no way
+we can do anything reasonable in such circumstances, so we disallow it.
+
+The makeComplete() (nee complete()) method is now documented as being
+idempotent so that we can now simply go through the whole animation chain and
+mark every animation is complete whether or not it has been previously
+processed.
+
+If a layer is in an animation chain multiple times, like:
+
+  moveTo(layerA, pointA).then.moveTo(layerA, pointB)
+
+and the first animation has already completed before complete() is called, then
+the first animation will move layerA to pointA during the completion process,
+but the second animation will move layerA to pointB immediately afterwards, so
+aside from a miniscule amount of extra effort (possibly offset by vastly
+simpler completion logic) there will be no visible funny business. Everything
+will end up where it should be were the animation chain allowed to complete
+normally.
+
+It is possible that a totally separate animation chain was queued up to
+manipulate a layer after the first one completed, but then that first one went
+on to do other things and was complete()d later, thereby stepping on the toes
+of the second spawned animation chain. But arguably you should be completing
+all animation chains in that case and completing them in the order that they
+were spawned, so you should still be OK. Though you really shouldn't be doing
+such crazy shit in the first place.
+
+I also removed Repeat _isCompleted tracking because it didn't make any sense.
+At first I thought animation chains were intended to be reused, but that's not
+possible. complete() also cancel()s the animations, and once an animation is
+cancel()ed, it can never be reused. Moreover, once an animation is cancel()ed,
+next() will never be called on it. So there are no circumstances in which
+Repeat would need to return something special from next() after it had been
+complete()d.,287,2014-03-24T16:12:17Z,21437553,push,mdb@samskivert.com,mdb@samskivert.com
+21290782,47a88172bb21ddece6987f403330ceaa56138191,,master,passed,No recursion needed.,136,2014-03-21T23:10:14Z,21290783,push,karma@deadmoose.com,karma@deadmoose.com
+21290275,abf41a840663fef86e944e12f621bfc4915f1a9c,,master,passed,Cancelled -> canceled
+
+I really can't decide which spelling I hate less, but I definitely
+hate a comment saying one the line above using a variable saying
+the other.,167,2014-03-21T23:04:58Z,21290277,push,karma@deadmoose.com,karma@deadmoose.com
+21287716,6f00420ab09ce9dc6314a5c080dfcefd2ff893a7,,master,passed,Added ability to complete Animation chains instantly
+
+-Completed animations will instantly apply the final result of the
+animation, and propagate the completion call to the rest of the
+animations in the chain.  Animations which have already been completed
+manually or automatically by the animator will have no effect.
+-Abstract method for complete() added to Animation (can be called
+through the Animation.Handle), and implementations for existing
+TriplePlay Animation subclasses,141,2014-03-21T22:10:55Z,21287717,push,bryanchacosky@gmail.com,bryanchacosky@gmail.com
+21220429,976311d20b458f4c4d7f70ecf1b390eb740fdb58,,master,passed,When a TextWidget autoshrinks the text to fit, correct the height for vertical alignment.,146,2014-03-21T00:28:36Z,21220430,push,mthomas@threerings.net,mthomas@threerings.net
+21060925,a539b4495a39977d99c8838557e7ec29b460e602,,master,passed,Guava 13 was quite a while back. It's up to 16 these days.,167,2014-03-18T23:59:58Z,21060926,push,karma@deadmoose.com,karma@deadmoose.com
+20972433,d2382b724bf2f5ee84f39687379fb6300eb7f2da,,master,passed,Use assert in lieu of Asserts.,159,2014-03-17T21:29:05Z,20972434,push,mdb@samskivert.com,mdb@samskivert.com
+20956947,a4f66647bcdd62fc1586bedf76d361a4a143a311,,master,passed,Fix bug where quickly toggling mute on a sound board could NPE.
+
+In particular, if the board has a looping sound (music), the timing of faders could get interleaved such that things were inconsistent.,215,2014-03-17T18:03:13Z,20956948,push,mthomas@threerings.net,mthomas@threerings.net
+20956442,51521b6013153e9a2e9cf339c05da0c84466be9d,,master,passed,Comment out an Flump Library Asserts call which is taking a measurable amount of time.
+
+Since PlayN Asserts are not actually in any way removed for production (despite what the documentation would have you believe), having this assert here does noticably ungood things to performance while loading a flump library.,161,2014-03-17T17:56:28Z,20956443,push,mthomas@threerings.net,mthomas@threerings.net
+20073910,85319f4ace6af5bc972c02e1aa0e85b1d0b61312,,master,passed,Speeling,177,2014-03-04T18:11:58Z,20073911,push,karma@deadmoose.com,karma@deadmoose.com
+20001307,8b4a1db3744a6ee074e2669ebac8604e21b3a3aa,,master,passed,Travis deployment changes.
+
+Snagged travis-deploy.sh from playn & wired it up the same
+such that TP runs its tests again & only publishes snapshots
+in case of success.
+
+I kind of wish the boilerplate to clone & run a script from
+travis-maven-deploy wasn't comparable to the boilerplate
+duplicating the script.,151,2014-03-03T19:55:57Z,20001308,push,karma@deadmoose.com,karma@deadmoose.com
+19827066,c263fc2b780a60322898ba0b7cd09c2b96cf95ef,,master,passed,No need to create two StringBuilders.
+
+Code like: '"foo " + bar' is implicitly turned into
+'new StringBuilder().append("foo ").append(bar).toString()' by the compiler.,153,2014-02-28T19:28:21Z,19827067,push,mdb@samskivert.com,mdb@samskivert.com
+19825750,5c04b78207cae662a36dd7d7ca359465ccc8e6c1,,master,passed,Make Logger.format() more consistent with other Loggers. (See backwards-incompatibility note)
+
+In particular, this now takes a prefix message so it formats to a string like:
+message [key=value, key=value, ...]
+
+Backwards-Incompatibility Note: Due to the varargs parameter on the old version, any old code with at least two arguments expecting the old signature will continue to compile and will produce unexpected results, however it seems like most everything was using it thinking it was the consistent new way anyway.,133,2014-02-28T19:04:48Z,19825751,push,mthomas@threerings.net,mthomas@threerings.net
+19623392,d46fd458ec8d7b55793720ffe799dc27e822c2ed,,master,passed,What crack was I smoking that I plumbed through a StringWriter?,133,2014-02-26T02:00:42Z,19623393,push,karma@deadmoose.com,karma@deadmoose.com
+19220338,b0a0e41fe0392976c02713fad251fef7de376937,,master,passed,Iterable's good enough for its needs,154,2014-02-19T22:44:29Z,19220339,push,karma@deadmoose.com,karma@deadmoose.com
+18755665,d8739e642ccfe8ba2cf049f9cfe122bc6895bad0,,master,passed,Back to latest PlayN snapshot.,154,2014-02-12T20:15:48Z,18755668,push,mdb@samskivert.com,mdb@samskivert.com
+18755236,e7eac6eddc43393f38958a1f548a3a1094cb2eb8,,master,passed,[maven-release-plugin] prepare for next development iteration,141,2014-02-12T20:08:59Z,18755237,push,mdb@samskivert.com,mdb@samskivert.com
+18755226,32f9886478b8d805ce2a7cc87940a6b49ff1763a,,tripleplay-1.8.5,failed,[maven-release-plugin] prepare release tripleplay-1.8.5,118,2014-02-12T20:08:51Z,18755227,push,mdb@samskivert.com,mdb@samskivert.com
+18755224,32f9886478b8d805ce2a7cc87940a6b49ff1763a,,master,failed,[maven-release-plugin] prepare release tripleplay-1.8.5,106,2014-02-12T20:09:36Z,18755225,push,mdb@samskivert.com,mdb@samskivert.com
+18436953,fc3bc6d327cbb5cfb729de649548414d100876ce,,master,passed,Scale3Background now supports Horizontal or Vertical alignments.,173,2014-02-07T20:04:56Z,18436954,push,ebyan@threerings.net,ebyan@threerings.net
+18385409,68fce87f43413a7f3a195ea92391a8d7f1b593f2,,master,passed,Track the maximum drag distance for track behavior.,150,2014-02-07T01:06:45Z,18385410,push,jamie@threerings.net,jamie@threerings.net
+18251934,723f437754aeb1a22c0c84e834c3ab59295fb85c,,master,passed,Don't handle null, let it crash.,142,2014-02-05T06:39:48Z,18251935,push,jamie@threerings.net,jamie@threerings.net
+18240466,6bfaafddc26b91693f893e7d98a0e2acc8657fa2,,master,passed,Convenience method for uniformly positioning widgets.,165,2014-02-05T00:39:53Z,18240467,push,jamie@threerings.net,jamie@threerings.net
+18230872,ed53677fa7f9e5c0c8ff72d4358b4ff2f70169c2,,master,passed,Make setPosition paint with a dt instead of setting _position
+
+Previously, it would diddle _position itself and then paint with
+a zero dt. Everything worked fine for simple movies, but if you had
+a Movie which had other Movies on it, they wouldn't advance.
+
+This is still a little bit weird for Movies that contain other Movies
+with different durations; as you loop, the two fall in and out of sync,
+but that's always been the case. If you're doing complicated movies like
+that and then explicitly reaching in and modifying the position yourself,
+caveat emptor.
+
+Possibly the answer here is to let you setDuration with negative values?
+Since it WILL let you set an arbitrarily overly-large value right now and
+loop through N times to reach it. But at that point, maybe you should just
+be calling paint() with your calculated dt yourself. I haven't fully thought
+it through, so that's left as an excercise for the reader when he or she
+decides to go into wacky town like that.,158,2014-02-04T22:00:09Z,18230873,push,karma@deadmoose.com,karma@deadmoose.com
+18146672,5042539699b53b0540a0b5e7679e1f91d2d0b072,,master,passed,Speeling,160,2014-02-03T18:37:00Z,18146673,push,karma@deadmoose.com,karma@deadmoose.com
+18086265,6f2addf85ade3ee659ffd5f28df77f386a28d7c5,,master,passed,Put the layout demos after the other UI demos.,117,2014-02-02T18:05:45Z,18086266,push,mdb@samskivert.com,mdb@samskivert.com
+18085993,3a9ee62198ef47d834c1b7d3565ec6a2cc33900b,,master,passed,Added some missing source headers.,138,2014-02-02T17:57:58Z,18085994,push,mdb@samskivert.com,mdb@samskivert.com
+18057752,39b68a48a0768197597400537c50a64c0fc95bae,,master,passed,Implement absolute layout with box points and give it a demo.
+
+This encompasses the proposed OverlayLayout and probably some other things in puzzle pirates.,138,2014-02-02T00:54:27Z,18057753,push,jamie@threerings.net,jamie@threerings.net
+18055368,17b5c5ef38ef0a34cd65cb5fde028b488b0a5820,,master,passed,Introducing HistoryGroup.,122,2014-02-01T23:32:28Z,18055369,push,jamie@threerings.net,jamie@threerings.net
+17929694,027fe7ad448f088b553691bde04edc5b47d27b5b,,master,passed,Specialize the return types.,141,2014-01-30T19:47:41Z,17929695,push,mdb@samskivert.com,mdb@samskivert.com
+17872874,a00b1ae7e868e57671b3bf3c26bd24dd5c64842b,,master,passed,Use new SBT bits.,153,2014-01-29T23:21:48Z,17872875,push,mdb@samskivert.com,mdb@samskivert.com
+17784302,a52d3d4db113b06b7a7877fe3b83ae387ab5e6d9,,master,passed,Wire up mvn deploy to SonaType via Travis CI.,160,2014-01-28T18:27:18Z,17784303,push,mdb@samskivert.com,mdb@samskivert.com
+17780665,e6b6e3be3714d446252bc14621b3df1508cc94e8,,master,passed,Convenience method to dump json,113,2014-01-28T17:26:22Z,17780666,push,karma@deadmoose.com,karma@deadmoose.com
+17733309,56ee35e494cd52d35c0ea34cf1d1404f25856e0a,,master,passed,Need to actually ship the flump's library.json,113,2014-01-27T23:23:50Z,17733310,push,karma@deadmoose.com,karma@deadmoose.com
+17723113,e6d9938f1485c6d90e5758757736a3b0c133a747,,master,passed,Nix some obsolete color core bits.,119,2014-01-27T20:42:43Z,17723114,push,mdb@samskivert.com,mdb@samskivert.com
+17711269,c4fbffddd1cb43436d7b36efd0dcc44efee1f4ce,,master,passed,Fixed typo bug.
+
+Thanks tangxf!,102,2014-01-27T17:28:46Z,17711270,push,mdb@samskivert.com,mdb@samskivert.com
+17513635,3a20bfd29b71a0792de6fdf05f2272bbb9ecbb67,,master,passed,Formatting &c cleanups.,107,2014-01-23T23:07:07Z,17513636,push,mdb@samskivert.com,mdb@samskivert.com
+17513102,26e21c42dddec58aa87f8a6571f58c185731f889,,master,passed,Use handy new horizontal() method.,143,2014-01-23T22:57:59Z,17513103,push,mdb@samskivert.com,mdb@samskivert.com
+17511737,6e817df2f58a3d0dfb7b789c4ba2528709da7ec4,,master,passed,Fix text widget sizing problem.
+
+The icon sizing needs to start with the text size, it can't be done in the wrong order. So
+calculate the usedWidth specially for autoshrinkage.,100,2014-01-23T22:29:48Z,17511738,push,jamie@threerings.net,jamie@threerings.net
+17508455,debf72d3e130561f425b3dcef1a2f7c99ee1a6c1,,master,passed,Removing final property on Scale3#height
+
+since there is no set method available, like in Axis,139,2014-01-23T21:41:36Z,17508456,push,bryanchacosky@gmail.com,bryanchacosky@gmail.com
+17507702,aab1a1049309b613e17a7a3a98d7f89f64e36630,,master,passed,Bad import,118,2014-01-23T21:34:31Z,17507703,push,bryanchacosky@gmail.com,bryanchacosky@gmail.com
+17507660,17568d47b84b4df561cbb598929c723ce3a0753b,,master,errored,Created Scale3 and Scale3Background (similar to Scale9)
+
+-Added Scale3 to provide horizontally scaling similar to Scale9 (scales
+in a 3x1 portion)
+-Moved Scale9#Axis and Scale9#clamp() into separate Axis class to be
+used in Scale9 and Scale3,113,2014-01-23T21:32:34Z,17507661,push,bryanchacosky@gmail.com,bryanchacosky@gmail.com
+17501468,2a4413ea057c379e3afd27d66cd116c4f02b83cf,,master,passed,Fix SWT native font size.,117,2014-01-23T19:52:42Z,17501469,push,jamie@threerings.net,jamie@threerings.net
+17360285,3f02be5dbe023230cb2deb9eb8caa934f375b7b3,,master,passed,Spurious semicolon.,120,2014-01-21T19:02:02Z,17360286,push,karma@deadmoose.com,karma@deadmoose.com
+17085517,2f66a7850f45c7e30b762521ddb78d83f9eb58bc,,master,passed,Don't integrate with AWT or SWT by default.
+
+It causes Eclipse to crash on the Mac and IntelliJ to do weird things.,128,2014-01-16T20:32:06Z,17085518,push,mdb@samskivert.com,mdb@samskivert.com
+17025366,f26285413363e9c58e836d92ddb2e9cf984df578,,master,passed,Make HTML view 800x600.,104,2014-01-15T22:01:25Z,17025367,push,mdb@samskivert.com,mdb@samskivert.com
+16896644,404197d2b628e79241de9bde2092e7922b5f203f,,master,passed,Colors.darker can now take a custom dark factor.
+
+Because calling Colors.darker(Colors.darker(Colors.darker())) is not good for anyone's health.,127,2014-01-13T22:33:34Z,16896645,push,ebyan@threerings.net,ebyan@threerings.net
+16877983,cf2f375c0ce38ea6e08ddda00aeb36d8478f1127,,master,passed,Two tiled image background fixes.
+
+- don't try to render unready images; they have zero width/height which results
+  in an infinte loop
+- restore alpha after we're done rendering,142,2014-01-13T17:03:01Z,16877984,push,mdb@samskivert.com,mdb@samskivert.com
+16756030,184635f7a179586d40a12dc2bc209def54b00439,,master,passed,Don't overdraw.,115,2014-01-10T23:53:17Z,16756031,push,mdb@samskivert.com,mdb@samskivert.com
+16755355,6c5308aa3fa48671b68bfb042bfeb208bb2a2a39,,master,passed,Added tiled image background.
+
+This doesn't use GL image repeating, which requires POT sized image.,133,2014-01-10T23:36:32Z,16755356,push,mdb@samskivert.com,mdb@samskivert.com
+16741319,02f617b73bbddd84fcac22cc9193b8e54e65cba3,,master,passed,Properly auto-shrink during size computation.
+
+Previously we would only auto-shrink once we were already laid out. This meant
+that we reported a much larger preferred height than we ended up using, which
+caused funky layouts.
+
+Also fixed issue with iconGap not being included in usedWidth/Height in
+layout().,128,2014-01-10T18:54:07Z,16741320,push,mdb@samskivert.com,mdb@samskivert.com
+16676528,da80f3bd35b917ecf0389c38dcf497a9c3d60667,,master,passed,Add tween(XYValue). Use it elsewhere.,147,2014-01-09T19:59:41Z,16676529,push,mdb@samskivert.com,mdb@samskivert.com
+16673230,590fda7b2089affe569f59a4e21c07d2bf230245,,master,passed,Removed no longer true comment.,113,2014-01-09T19:15:09Z,16673231,push,mdb@samskivert.com,mdb@samskivert.com
+16619049,4fa83b92f3e95a1858ee5acf1f387e1726349b9f,,master,passed,Remove support for removed methods.,132,2014-01-08T23:04:31Z,16619050,push,jamie@threerings.net,jamie@threerings.net
+16556453,65e7e4eb7ebfcaabd692fc17be02548b47efb68b,,master,passed,Return an IntValue when value-ating an int.,122,2014-01-07T22:43:59Z,16556454,push,mdb@samskivert.com,mdb@samskivert.com
+16545135,b0c5bed09ab381100a0a79da2acba0f9d8243c39,,master,passed,Provide way to pass a singleton effect renderer.
+
+If your effect renderer doesn't require parameters from the element, you can
+just do:
+
+  addStyles(Style.TEXT_EFFECT.is(myEffectRenderer)),122,2014-01-07T19:28:16Z,16545136,push,mdb@samskivert.com,mdb@samskivert.com
+16543698,37a2bceb66683f2c9b0699e10eec5f6239152d20,,master,passed,Remove some deprecated bits.,131,2014-01-07T19:09:16Z,16543699,push,mdb@samskivert.com,mdb@samskivert.com
+16540227,9c39de88e0f18c2398e7e9b3da61005bdcbc297d,,master,passed,Make it possible to use custom EffectRenderers.
+
+Do so thusly:
+
+button.addStyles(Style.TEXT_EFFECT.is(new EffectFactory() {
+  public EffectRenderer createEffectRenderer (Element<?> elem) {
+    // use Styles.resolveStyle(elem, Style.FOO) to get parameters
+    return /* my custom effect renderer */;
+  }
+}));,128,2014-01-07T18:07:20Z,16540228,push,mdb@samskivert.com,mdb@samskivert.com
+16538802,7241027d9a7e3b801d98d757eb7fc5ae28abad85,,master,passed,Use withEffect().,105,2014-01-07T17:41:11Z,16538803,push,mdb@samskivert.com,mdb@samskivert.com
+16538674,73b887b73236cd75dde8cdc4b1b9d85b98c0e7de,,master,passed,TextStyle.withEffect(),113,2014-01-07T17:37:13Z,16538675,push,ebyan@threerings.net,ebyan@threerings.net
+16495412,cb5c59134dad9a8f62b700f0e26a53e24f86caf0,,master,passed,Restore the ability to override creation of the effect renderer on custom text widgets.,131,2014-01-06T23:21:43Z,16495413,push,mthomas@threerings.net,mthomas@threerings.net
+16482835,4e10ff5e07f5ba23285cdf2fba4c6f0e8a259a01,,master,passed,Add animation barriers demo/test.,141,2014-01-06T19:28:29Z,16482836,push,mdb@samskivert.com,mdb@samskivert.com
+16477992,7c742d9f31343ece8dcc090794b2301d4041eb87,,master,passed,Concatenate alpha when capturing a layer.
+
+Canvas fields are write only so it needs to be passed around. This works in my local app, but
+needs testing against alpha != 1 case.,136,2014-01-06T17:57:16Z,16477993,push,jamie@threerings.net,jamie@threerings.net
+16411442,1d8d5a2f37f86e77d4b85840ab98d26089d185d8,41,master,passed,Layers.capture doesn't respect images alpha value,116,2014-01-05T13:20:39Z,16411443,pull_request,tulsidas@gmail.com,tulsidas@gmail.com
+16291110,781e472f33a1c287828f7333108380cb29dfe6c8,,master,passed,Bring comments up to date with implementation changes.
+
+Also unprotected TouchBars ctor, an oversight.,102,2014-01-03T00:31:38Z,16291111,push,jamie@threerings.net,jamie@threerings.net
+16287530,c71c53af85d88b9a15a0443953fc5b2797c65a5b,,master,passed,Create "normal" styles directly.
+
+This avoids the "with" allocation overhead yet reduces boolean parameter clutter.,112,2014-01-02T23:07:13Z,16287531,push,jamie@threerings.net,jamie@threerings.net
+15966867,e11b3a07cdcd87a05a86287e85015226aaead13c,,v1.8,failed,Updated docs for 1.8 release.,17,2013-12-25T19:44:41Z,15966868,push,mdb@samskivert.com,mdb@samskivert.com
+15966712,4a07accd4c3c4100ef29aba80aa5d28c842f85fa,,master,errored,Manual version tweaks, move to next PlayN snapshot.,34,2013-12-25T19:37:16Z,15966713,push,mdb@samskivert.com,mdb@samskivert.com
+15945364,4cbdf5aef446d928433b449813d37a90380d897f,,master,passed,[maven-release-plugin] prepare for next development iteration,87,2013-12-24T23:55:29Z,15945365,push,mdb@samskivert.com,mdb@samskivert.com
+15945362,fe47e1494cd0109c85b2fe64814ab307f7fc27c6,,tripleplay-1.8,passed,[maven-release-plugin] prepare release tripleplay-1.8,87,2013-12-24T23:55:51Z,15945363,push,mdb@samskivert.com,mdb@samskivert.com
+15945360,fe47e1494cd0109c85b2fe64814ab307f7fc27c6,,master,passed,[maven-release-plugin] prepare release tripleplay-1.8,90,2013-12-24T23:55:35Z,15945361,push,mdb@samskivert.com,mdb@samskivert.com
+15886601,5d2b35d7383ecb327c525507046f4815cc93f53c,,master,errored,Updated to use TextStyle and StyledText.,81,2013-12-23T14:03:20Z,15886602,push,mdb@samskivert.com,mdb@samskivert.com
+15265351,5cf75ca8fdff23475e3ebf2d638f28dd80997461,,master,errored,Remove unused override.,107,2013-12-11T04:02:12Z,15265352,push,jamie@threerings.net,jamie@threerings.net
+15265183,c365df3cd0d2962ade5fed090334b3d02708b9e8,,master,errored,Support TEXT_WRAP style in SWT native fields.,117,2013-12-11T03:56:59Z,15265184,push,jamie@threerings.net,jamie@threerings.net
+15258264,72fdbfd9a168e82847411c02022263417629071e,,master,errored,@Overrides,113,2013-12-11T00:19:02Z,15258265,push,karma@deadmoose.com,karma@deadmoose.com
+15257238,f8c6d54e824c350729ac6aeba75ca729d201df07,,master,errored,Also support refreshing native overlay bounds on SWT.
+
+After some testing on Linux, SWT generates a lot of artifacts if fields are moved around directly,
+so post a pending refresh repeatedly to invokeLater until some time has passed.,99,2013-12-10T23:50:57Z,15257239,push,jamie@threerings.net,jamie@threerings.net
+15255457,c68ade61ed89dd951b9689e8a889d900b15e84c6,,master,errored,Update to new playn and calculate the transform and landscape values locally.,168,2013-12-10T23:10:07Z,15255458,push,jamie@threerings.net,jamie@threerings.net
+15252654,5ddb19908ba1c1192182f3d6aa6952201009b301,,master,errored,Quick and dirty implementation of swt overlay hiding.
+
+This gets rid of ugliness when native fields (or web browsers in yotab) are logically underneath a
+popup menu, but is not as nice as the iOS version because SWT doesn't support setting a clipping
+region.,109,2013-12-10T22:08:13Z,15252655,push,jamie@threerings.net,jamie@threerings.net
+15252413,01cd8f898fcdbde9a7cede6e90ae8217de398186,,master,errored,Use our own UI overlay for iOS.
+
+This will bring the overlay mechanism more into line with the way the java/swt ones work.,123,2013-12-10T22:03:38Z,15252414,push,jamie@threerings.net,jamie@threerings.net
+15070859,b289a6e63c1f99fc3e6d579e6463374783ee2dc1,,master,passed,Fix translation when ICON styles change.,118,2013-12-07T00:46:07Z,15070860,push,jamie@threerings.net,jamie@threerings.net
+15061469,12c2b77689ee250f96535e6745a358585a7bf58e,,master,passed,Re-render if text is NOT equal.,124,2013-12-06T21:23:12Z,15061470,push,jamie@threerings.net,jamie@threerings.net
+15056440,39d96aeb79830aa0a383b487ed1f12df12b28532,,master,passed,Oops, save our rendered bits.,131,2013-12-06T19:45:14Z,15056441,push,mdb@samskivert.com,mdb@samskivert.com
+15056337,b0ea4193fe7440cbcb22b75b8f30ff192ccd4377,,master,passed,Nix TextGlyph, use TextConfig.
+
+This makes "did anything change" comparison sufficiently less cumbersome that
+I'm fine with not factoring it out. Plus new "text rendering things" are likely
+to end up in TextConfig which means anyone using this same approach will
+benefit from them automatically, which was the goal of TextGlyph.,121,2013-12-06T19:37:30Z,15056338,push,mdb@samskivert.com,mdb@samskivert.com
+15007078,191fd5c55f3d82ab1d92450499b59197788fb29a,,master,errored,Factored rerender-avoidance into TextGlyph.
+
+We may want to move more of TextWidget's special jigger pokery therein so that
+other parties who want to render text outside the purview of a TPUI widget can
+benefit from its accumulated cruft^h^h^h^h^hknowledge.,113,2013-12-05T21:29:35Z,15007079,push,mdb@samskivert.com,mdb@samskivert.com
+15002996,91936d45628694d38cec6ef347dca3cdaf7bda4c,,master,passed,If our text, size, and style info is unchanged, no need to redraw the glyph.
+
+This gives a very significant performance improvement both in not having to do the drawing and not having to allocate the temporary memory in any situation where other layout changes are needing to happen frequently.,124,2013-12-05T20:13:16Z,15002997,push,mthomas@threerings.net,mthomas@threerings.net
+15002020,665601b37da6f37ddf1e58558521289a222c3c9e,,master,passed,Some tidying.,104,2013-12-05T19:53:58Z,15002021,push,mdb@samskivert.com,mdb@samskivert.com
+15000498,039d93f00ca9315bf4b9f5160faa9d1f58257676,,master,passed,Revamped to make Entity final, pool entities.
+
+Entity is now a reusable container for an int and some bit flags. This
+eliminates the "extend Entity and sneak some stuff in your class" approach, but
+you can just wrap an Entity in your sneaky class if you really want do to that.
+
+I considered eliminating Entity entirely and just passing around an int, but
+the need to box the int to dispatch entityAdded/Changed/etc. signals made me
+rethink things. The goal with pooled entities is zero GC during normal
+operation, and boxing would thus be a no-no. I could keep the Integer instances
+around, but at that point I might as well create my own "box" (aka Entity)
+which can also have the "interested systems" and "attached components" bit
+masks, along with a few other flags.
+
+This also eliminates the limit on number of systems and components. Yay BitVec.,109,2013-12-05T19:23:36Z,15000499,push,mdb@samskivert.com,mdb@samskivert.com
+14947529,ca9b7056cd4183215d76ae06293de9412cc0f28c,,master,passed,Select menu items on roll over (for mouse platforms).,111,2013-12-04T21:41:52Z,14947530,push,jamie@threerings.net,jamie@threerings.net
+14939012,e3c60aac4352a9ceec1e3e04b0ed5a138b738d3a,,master,passed,Make max systems/components configurable.
+
+I could make it dynamically expand, but it's pretty easy to increase the max if
+you ever hit it and it makes things a bit faster/simpler.,123,2013-12-04T18:46:09Z,14939013,push,mdb@samskivert.com,mdb@samskivert.com
+14896743,f85c9e1ac05a2e9426e60ebd28941659e596a0df,,master,passed,Simple asteroids game to demo entity system.,112,2013-12-03T23:54:34Z,14896744,push,mdb@samskivert.com,mdb@samskivert.com
+14880482,98f95766e42da09065792ebd8164457b82e1288c,,master,passed,Remove keyboard event post for SWT text fields.
+
+Because the platform uses a global key filter, doing it here is not necessary and causes a double
+dispatch.,101,2013-12-03T18:48:58Z,14880483,push,jamie@threerings.net,jamie@threerings.net
+14846954,e8178b6a61d38e944eb318b5c6dea9434c1eceff,,master,passed,Use the right tool for the job.,93,2013-12-03T05:25:23Z,14846955,push,jamie@threerings.net,jamie@threerings.net
+14845500,72892933a809ce4f2dafcca35721e08d9160767b,,master,passed,Update content visibility after layout.,97,2013-12-03T04:21:14Z,14845501,push,jamie@threerings.net,jamie@threerings.net
+14503854,458f46fac0319c2efae1267c9904e4775c1147eb,,master,passed,Add an example of making a button throb.
+
+This requires too much hackery, so I'm going to do something to make it less
+ugly.,108,2013-11-25T18:19:57Z,14503855,push,mdb@samskivert.com,mdb@samskivert.com
+14381479,51a9a0a2cde402d23f2900269ef952cd41b21150,,master,passed,Scoot convert method up to the base class.,112,2013-11-22T18:10:56Z,14381480,push,jamie@threerings.net,jamie@threerings.net
+14380532,9e2fe79f15f1066cd25a68197ed4a9208b64c4a3,,master,errored,Redo layout to evenly split weight between columns.
+
+The table layout would do wonky things if one entered a lot of text and put it
+into the disabled text widget.,126,2013-11-22T17:53:22Z,14380533,push,mdb@samskivert.com,mdb@samskivert.com
+14346533,e5db2d84bd8e2406dd8d40182c48c9f8b54aecfd,,master,errored,Implement focus.,103,2013-11-22T02:20:32Z,14346534,push,jamie@threerings.net,jamie@threerings.net
+14342982,baa44843d8796124a454e5743a29df4e6f2e19b4,,master,errored,Set the app name in the demo.,110,2013-11-22T00:33:39Z,14342983,push,jamie@threerings.net,jamie@threerings.net
+14340685,503951e450e4f693ca9e37b637d5cc915402ea45,,master,errored,Also convert component color images.,112,2013-11-21T23:33:43Z,14340686,push,jamie@threerings.net,jamie@threerings.net
+14334999,348c631f32933a491c708a9610994c5de4a4f513,,master,errored,Workaround canvas whiteout issue.
+
+This turns out to be MacOS only (tested on 10.7.5). The workaround is bizarre, I feel lucky to
+have stumbled across it. Perhaps the cocoa gl initializes clipping early and does something
+special unless a sibling is present.,117,2013-11-21T21:39:32Z,14335000,push,jamie@threerings.net,jamie@threerings.net
+14329579,e8bb5b67fdabe18b178ec1ea0f27bfa9fbd297d0,,master,errored,Fix bug on repeating a PlayMovie animation.
+
+During init, we set the movie to its start. This means when we repeat we put it back there rather than continuing off the end which seems to lead to an infinite loop.,109,2013-11-21T19:50:39Z,14329580,push,mthomas@threerings.net,mthomas@threerings.net
+14294504,0f814fc741b331e487112d88a27e240008783cef,,master,errored,Tweak: do a click immediately if the pointer is newly in bounds.,116,2013-11-21T06:01:15Z,14294505,push,jamie@threerings.net,jamie@threerings.net
+14286675,dbb1e45690a828f5c949d304f30a38b38874e0e6,,master,errored,New behavior for rapid fire buttons.
+
+Also an intermediate Capturing class, which is not really necessary but I could see being useful.,141,2013-11-21T01:27:10Z,14286676,push,jamie@threerings.net,jamie@threerings.net
+14275909,28cab014d17386ca599f552b613fb50d9bb2d99b,,master,errored,Add a commented out block for the weirdness.,104,2013-11-20T21:29:52Z,14275910,push,jamie@threerings.net,jamie@threerings.net
+14236431,fecadd0eaa247a16e13ba52bcd1805baf815012d,,master,errored,Make sure new ios native fields get styles too.,93,2013-11-20T05:40:09Z,14236432,push,jamie@threerings.net,jamie@threerings.net
+14225978,fd58a768aae86eb8fc2f6b653195c47942e28ee0,,master,errored,Speeling,112,2013-11-19T23:29:11Z,14225979,push,karma@deadmoose.com,karma@deadmoose.com
+14222744,86b31a5b9d1337aaaf3c8022e707227b861aa9c1,,master,errored,Move use of SWT platform into a command line switch for now.,122,2013-11-19T22:18:32Z,14222745,push,jamie@threerings.net,jamie@threerings.net
+14220779,4107ad195f02525ea70c570f9216a02fd4f4e6c0,,master,errored,Demo wrapper app for SWT.,127,2013-11-19T21:42:18Z,14220780,push,jamie@threerings.net,jamie@threerings.net
+14220404,1da639ebed1cdb5f96ecf9b4e176fd125a2d2ae3,,master,passed,Refactor to work with SWT's immutable control style.
+
+Instead of enumerating the kinds of fields that might cause reallocation, just assume reallocation
+can occur on any style change. This will work with SWT, makes the ios and "java" versions more
+clear, and moves the platform-specific logic of when the mode should really change down into the
+paltform, where it belongs. Tada!,102,2013-11-19T21:34:53Z,14220405,push,jamie@threerings.net,jamie@threerings.net
+14170346,93ea758e6682589163086f682188e83950969ec3,,master,passed,Publish the Range's content position.,116,2013-11-18T23:46:15Z,14170347,push,jamie@threerings.net,jamie@threerings.net
+14154038,1467f8e62e48fbaedbfcacac79dadba5461e4498,,master,passed,Less clunky.,108,2013-11-18T18:28:21Z,14154039,push,jamie@threerings.net,jamie@threerings.net
+14153388,4136712f6e4eb302cd4b68df2614fdaa0f6e7668,,master,passed,Extract a scale9 utility from background.,116,2013-11-18T18:17:42Z,14153389,push,jamie@threerings.net,jamie@threerings.net
+14081534,0f42344b5b4e613b3d6646a73999d6ecc5fd6a5b,,master,passed,Fix bugs in TypedStorage.setFor().
+
+Fixes #38, #39.,97,2013-11-16T23:39:05Z,14081535,push,mdb@samskivert.com,mdb@samskivert.com
+14047182,64aead1e1af1481b27c947f944fe9f6a3a28c402,,master,passed,Back to development.
+
+Revert "Fix typo."
+
+This reverts commit 9fabb34c772895c008a75d207c4ea2ba0b76878c.
+
+Revert "Prepare for release of 1.7.9c."
+
+This reverts commit a5aea07f693036eadd95c382320ccfafa62d60b0.,107,2013-11-15T22:47:00Z,14047183,push,jamie@threerings.net,jamie@threerings.net
+14047070,9fabb34c772895c008a75d207c4ea2ba0b76878c,,master,errored,Fix typo.,29,2013-11-15T22:44:14Z,14047071,push,jamie@threerings.net,jamie@threerings.net
+14046912,a5aea07f693036eadd95c382320ccfafa62d60b0,,master,errored,Prepare for release of 1.7.9c.
+
+Sorry for all the little releases.,37,2013-11-15T22:41:32Z,14046913,push,jamie@threerings.net,jamie@threerings.net
+14039325,fa2d905dd312b8bdb67b584a8f686519c48d7089,,master,passed,Change to requestFocusInWindow
+
+requestFocus has some bad side effects on some platforms.,100,2013-11-15T19:35:42Z,14039326,push,jamie@threerings.net,jamie@threerings.net
+13984839,9d4413aec2c26ede49386e7a8bbbf170a15a096a,,master,errored,Upgrade to SBT 0.13.0.
+
+Disabled Proguard stuff. Why do I try to make this stuff work in SBT? I should
+really know better than to invite those yaks into the yard.,129,2013-11-14T18:38:37Z,13984840,push,mdb@samskivert.com,mdb@samskivert.com
+13943559,4953b40127343770d1a1d5a5b0f2675eb81c7643,,master,errored,Fixing issue where contents were displayed offset within the frame.
+
+The entired contents of the window were occassionally being shifted out of the frame. Controls were responding as if the widgets were in their normal position. This was fairly reproducable by running more than one instace of TripleDemoJava at once.
+Calling pack() before the JFrame is shown consistently fixes this. According to Oracle, pack() is meant to be called before setVisible(true) anyway. This has only been reported on OSX. This was fairly reproducable by running more than one instace of TripleDemoJava at once.,122,2013-11-13T23:57:02Z,13943560,push,matt@threerings.net,matt@threerings.net
+13925205,57f7e4040b09dd6ed1db8dbdf623608e02a4ca21,,master,errored,Back to snapshots.
+
+Revert "Prepare for release of 1.7.9b."
+
+This reverts commit 6dab8cb976923cd1e629cfb5d6227a31520bd11c.,109,2013-11-13T17:42:03Z,13925206,push,jamie@threerings.net,jamie@threerings.net
+13925021,6dab8cb976923cd1e629cfb5d6227a31520bd11c,,master,errored,Prepare for release of 1.7.9b.,38,2013-11-13T17:39:36Z,13925022,push,jamie@threerings.net,jamie@threerings.net
+13898656,4879ce92606023251a0da275cb745ad32946562b,,master,errored,Pop that request over to AWT.
+
+Side effect here was that about half the time the field did not gain focus. For some reason,
+even with the fix it is still short of 100%, failing about 1 in 10 times.,85,2013-11-13T05:49:09Z,13898657,push,jamie@threerings.net,jamie@threerings.net
+13888747,cf135163f5f79c638d4ce6f88ab73a14ee91c7c5,,master,errored,Allow the focused field to be cleared.,131,2013-11-13T00:41:15Z,13888748,push,jamie@threerings.net,jamie@threerings.net
+13882585,771d580821119cd0112a47b13520dafcacde73b2,,master,errored,Update the native text on the AWT thread.
+
+This was causing a weird side effect. Highlighting the text in a field and typing a new letter
+would place the insertion point at the beginning of the field (about 90% of the time, sometimes
+it didn't). So if you typed two or more keys, you'd rarely get what you want.
+
+Maybe this will shore us up for a while, but I'm quite worried about the "dual event pump"
+situation with AWT and playn fighting. There are other issues like this one, and probably some
+crash bugs lurking, waiting for just the right use case.,124,2013-11-12T22:15:29Z,13882587,push,jamie@threerings.net,jamie@threerings.net
+13868487,ef51207931ce1f57e8ee67b9ccc5823f8aebe7d4,,master,errored,Back to snapshots.
+
+Revert "Prepare for release of 1.7.9."
+
+This reverts commit 38cee440604fc34b1358a9ef35259951bb446d55.,118,2013-11-12T17:27:41Z,13868488,push,jamie@threerings.net,jamie@threerings.net
+13868387,38cee440604fc34b1358a9ef35259951bb446d55,,master,errored,Prepare for release of 1.7.9.,28,2013-11-12T17:26:06Z,13868388,push,jamie@threerings.net,jamie@threerings.net
+13842250,ccc8321f174f8da8abe96f3585ccbdec15f1d0bc,,master,errored,Clean up unused import.,90,2013-11-12T05:31:20Z,13842251,push,jamie@threerings.net,jamie@threerings.net
+13842227,20645b8cb4a9662ddf8eae0f0d6c1faa7f8bb464,,master,errored,Listen for and post key events from native text fields.
+
+The game can't catch keypresses and prevent them from making it to the text field, but can respond
+easily to non-printables like tab, escape and arrow keys.,103,2013-11-12T05:29:56Z,13842228,push,jamie@threerings.net,jamie@threerings.net
+13816101,b7822c525f013333e0680a4cb4750a2efa074c89,,master,passed,Change the keyboard listener to an activity signal for native text fields.
+
+The implementation was a kludge. I'm guessing there's a correct way to do it, but yotab only cares
+about the activity and this was created for yotab, so just dispatch that for now. No need to make
+it look like a legitimate key dispatch.,113,2013-11-11T17:41:44Z,13816102,push,jamie@threerings.net,jamie@threerings.net
+13721749,cc93f4e80e1505f2f09e0c1e315ee07c493cd52f,,master,passed,Demo the origin style.,124,2013-11-09T08:06:18Z,13721750,push,jamie@threerings.net,jamie@threerings.net
+13712451,5dea19ceb2fb2805725866dadb8c7a7b425e7f72,,master,passed,Sort out popup position configuration.
+
+This was confusing the concept of trigger point and menu origin. There are some common scenarios,
+but you basically want to be able to configure them independently. Now that can be done through
+styles. The old "at" methods are deprecated but still supported by manipluating a couple of lazily
+created members.
+
+To convert to the new system, addStyles on the trigger and menu and be sure and pass the pointer
+event to the Pop constructor.,95,2013-11-08T23:16:15Z,13712452,push,jamie@threerings.net,jamie@threerings.net
+13708828,cfce38bf79bd1040d588de398bc4ff2ccc85ddfe,,master,passed,Added TODO comment.,110,2013-11-08T21:39:00Z,13708829,push,jamie@threerings.net,jamie@threerings.net
+13659406,5cd3618761b3fbde9d6110e4257fe7223e63a133,,master,passed,Allow text effect renderers to have an offsetX/Y
+
+This means that the effect renderer can do things like draw a shadow below the text without causing the primary front text to be offset compared to other text with a more basic renderer.,118,2013-11-07T23:10:51Z,13659407,push,mthomas@threerings.net,mthomas@threerings.net
+13651203,9a182d063338dd91fb4cce43913a14e42054ac83,,master,passed,Make a way to deploy locally.
+
+This just means it's easy to manage a maven repository manually
+using maven command line options.,100,2013-11-07T20:01:43Z,13651205,push,jamie@threerings.net,jamie@threerings.net
+13651202,dd2670e66be0e164ccf4521a501c113981c1e201,,tripleplay-1.7.5,errored,Allow local deploy
+(cherry picked from commit 79840db909d85c2bb2ac6bde4e5332634f328a62),26,2013-11-07T20:01:39Z,13651204,push,jamie@threerings.net,jamie@threerings.net
+13651201,4cfa50c6b30a6aec49ad1c3d824c5e9576a54303,,tripleplay-1.7.6,errored,Allow local deploy,42,2013-11-07T20:02:53Z,13651206,push,jamie@threerings.net,jamie@threerings.net
+13595268,1ff44bbe517f183d33a85fec904b901acd9a7480,,master,passed,Consider focus loss a cancellation of editing.,116,2013-11-06T18:35:38Z,13595269,push,jamie@threerings.net,jamie@threerings.net
+13557042,a2c8200d631734d84f7424c908a7a81b426c6a06,,master,passed,Break out the creation of TextWidget effect renderer so it can be overridden.,107,2013-11-06T00:59:42Z,13557043,push,mthomas@threerings.net,mthomas@threerings.net
+13394457,f0990478f11bf9add84fdcfd1741590f31c3bc7a,,master,passed,Back to SNAPSHOTs.
+
+Revert "Prepare for release of 1.7.8."
+
+This reverts commit 5db44ea53aafd0ebaca4ab8f18afc14d1bcda705.,78,2013-11-02T05:08:14Z,13394458,push,jamie@threerings.net,jamie@threerings.net
+13394278,5db44ea53aafd0ebaca4ab8f18afc14d1bcda705,,master,errored,Prepare for release of 1.7.8.,27,2013-11-02T04:54:10Z,13394279,push,jamie@threerings.net,jamie@threerings.net
+13343426,5711e1318db2d8b5b9a484fcb6ad441a0c7abdcd,,master,passed,Draw the underline after the text, otherwise the outline can overlap the line.,93,2013-10-31T23:25:53Z,13343427,push,matt@threerings.net,matt@threerings.net
+13166461,6087f4b2576674acaf9281caa7b08f2aaed455c9,,master,passed,Move along, citizen. Nothing to see here.,126,2013-10-28T17:33:18Z,13166462,push,karma@deadmoose.com,karma@deadmoose.com
+13165305,1187a4a2b29b0a6e96535928a5fe60cfd15886a0,,master,passed,Jump through async hoops for the demo's scale 9 bg.
+
+Poking my rebuild of the demos for the web made me realize
+that this didn't work on the html version there,221,2013-10-28T17:12:18Z,13165306,push,karma@deadmoose.com,karma@deadmoose.com
+13052259,01faa42a4fc40a7d925d8eb05aa01c8a7374b7c4,,master,passed,Basic demonstration of CapturedRoot.,109,2013-10-25T17:45:00Z,13052260,push,jamie@threerings.net,jamie@threerings.net
+12951892,cd61d1c1c1505efdfc4dae0e5b0f26cd7422a6c4,,master,passed,Allow passing in your own Assets for flump loading.,123,2013-10-23T20:27:38Z,12951893,push,karma@deadmoose.com,karma@deadmoose.com
+12944700,cbe2025b3165ab43f8d9f81cc2a9f854ac8f448d,,master,passed,Disable antialiasing when using pixel-outline.,125,2013-10-23T17:57:12Z,12944701,push,mdb@samskivert.com,mdb@samskivert.com
+12943418,7fb9c8eeb5e68c5e75e220294bf5d12546671891,,master,errored,Fix menu placement for touch screen.
+
+It turns out fingers are fat and inaccurate. This also bumps up the non-touch case from 0 to 5.,110,2013-10-23T17:31:08Z,12943419,push,jamie@threerings.net,jamie@threerings.net
+12908868,28bcb15f54e8798e33dfdf06133fb6278e205cad,,master,errored,Nix that little subclass of Glyph.
+
+It's really not bad to "new Glyph(layer)" instead of
+"new Glyph()", and having this extra class gets obnoxiously in the way
+if you happen to be in a Widget subclass when you're doing a Glyph for
+some OTHER purpose.,112,2013-10-23T00:06:35Z,12908869,push,karma@deadmoose.com,karma@deadmoose.com
+12902105,ec099509aaf3a5d0ef3e2cc380cc643d06bca71c,,master,errored,Text outline rendering moved from TextLayout to Canvas.,99,2013-10-22T21:23:54Z,12902107,push,matt@threerings.net,matt@threerings.net
+12851711,04008994d50d373dfe2c8753cb6f567630997d02,,master,passed,Fix demo window title.,104,2013-10-21T22:26:26Z,12851712,push,jamie@threerings.net,jamie@threerings.net
+12783063,13eda40df58f8b6cbc2695a92fb9c78167f284f6,37,master,passed,Update the demo so it uses the latest version (tag at 1.7.2)
+
+The existing demo is so old it sucks.,92,2013-10-20T11:10:52Z,12783064,pull_request,chii@mailinator.com,chii@mailinator.com
+12777845,85dbffec9b63ac8097fc574031da7fbd28a69c51,,master,passed,Autobox,85,2013-10-20T05:33:09Z,12777846,push,karma@deadmoose.com,karma@deadmoose.com
+12743680,45a774e0f96cc5f56a9498c73a1983ecc70d8139,,master,passed,EaseOutElastic interpolator.,82,2013-10-19T00:24:45Z,12743681,push,ebyan@threerings.net,ebyan@threerings.net
+12743186,7aeedaa635801e1f14f7abb33baab62d7b18d727,,master,passed,Bounce interpolator.,91,2013-10-19T00:00:50Z,12743187,push,mthomas@threerings.net,mthomas@threerings.net
+12736056,db8768ecaa694c776a64a904a331446c8338da7a,,master,passed,Dex demands this class be public.
+
+It's unarguably weird to have a non-public class in the inheritance hierarchy
+of a bunch of public classes, but the JVM doesn't really care. Dalvik on the
+other hand gets pissy. So we won't do that.,101,2013-10-18T20:42:20Z,12736057,push,mdb@samskivert.com,mdb@samskivert.com
+12729792,da54d43e7bbbce27d21ce911351d90e9c7f45a70,,master,passed,Allow a Pop reference to be retained and used to force cancel a menu.,108,2013-10-18T18:09:37Z,12729793,push,jamie@threerings.net,jamie@threerings.net
+12686884,d204ca52957b8d152bb6b185be194b2924cfd33d,,master,passed,Allow the library MoviePlayer is drawing from to be set.,126,2013-10-17T20:26:18Z,12686885,push,mthomas@threerings.net,mthomas@threerings.net
+12644083,cc64d79b4291966ca2179d70604e14ff5bb1044b,,master,passed,Alternative fix for clicks on text fields not working.
+
+The problem with making the canvas not focusable is that it totally breaks PlayN keyboard. Oops!
+
+So instead, manually detect when the canvas is eating a click and issue a focus request on the hit
+component.
+
+I also decided to bottleneck the overlays through the platform rather than exposing the JFrame,
+which was sort of on the cards anyway, though not technically needed for this.,98,2013-10-16T23:15:28Z,12644084,push,jamie@threerings.net,jamie@threerings.net
+12594668,08e396e3d3ed0660907430de80a38fd612790e25,,master,passed,Don't give the frame a dumb title.
+
+It looks better if it stays blank until the game code can set it properly.,154,2013-10-15T23:46:59Z,12594669,push,jamie@threerings.net,jamie@threerings.net
+12545035,e2f90116b577db223f8ba9d0ecce1af6e5c0ac54,,master,passed,Stop resolving style willy-nilly.
+
+Instead, stash the result during layout, as is customary.,128,2013-10-14T23:04:56Z,12545036,push,jamie@threerings.net,jamie@threerings.net
+12441788,ef63bdfe0bd6269874e08399a71f84463a579f1a,,master,passed,Expose flump Texture's Symbol just like Movie's.,91,2013-10-11T23:09:33Z,12441789,push,mthomas@threerings.net,mthomas@threerings.net
+12436016,4f64bbe73e2c050a9db6a6025897e7d44bfe4571,,master,passed,Remove deprecated class.,98,2013-10-11T20:30:57Z,12436017,push,jamie@threerings.net,jamie@threerings.net
+12429654,b159003c688638737d47062a98ecc6b80adae428,,master,passed,Provide a bit nicer exception for a missing symbol on a keyframe.,117,2013-10-11T17:57:06Z,12429655,push,mthomas@threerings.net,mthomas@threerings.net
+12384343,6566a338b84ecc218010f60f6ed2393688faa696,,master,passed,Back to SNAPSHOTs.
+
+Revert "Prepare for release of version 1.7.7."
+
+This reverts commit 7165d45a72abebe01135a202f94104ea804ed3f4.,95,2013-10-10T18:54:47Z,12384344,push,jamie@threerings.net,jamie@threerings.net
+12384090,7165d45a72abebe01135a202f94104ea804ed3f4,,master,errored,Prepare for release of version 1.7.7.,64,2013-10-10T18:49:35Z,12384091,push,jamie@threerings.net,jamie@threerings.net
+12375295,8583f1fed10123f5acc9c27d71bcf2445d1813c8,,master,passed,Remove unused method.,105,2013-10-10T15:45:21Z,12375296,push,jamie@threerings.net,jamie@threerings.net
+12329351,9b240d848f57274ef4b1a7e42140315699818b84,,master,errored,No Guava in TriplePlay.,82,2013-10-09T16:52:28Z,12329352,push,mdb@samskivert.com,mdb@samskivert.com
+12328847,11118ff6605b7dd556d6a55db8e896552ef37886,,master,errored,Add a BinaryFlumpLoader in the spirit of the JsonLoader, but from a binary format.
+
+The LibraryData class captures that binary format and provides the mechanisms for converting back and forth between Json and the binary. The ConvertFlumpLibsToBinary tool can be executed to convert existing library.json files into library.bin files.,94,2013-10-09T16:34:11Z,12328848,push,mthomas@threerings.net,mthomas@threerings.net
+12308295,0d8d3183b3ae9355bd17a4936645b92bebf730a4,,master,passed,Added toString for Insets.,95,2013-10-09T07:30:24Z,12308296,push,jamie@threerings.net,jamie@threerings.net
+12293508,db2cb8eabcfc8bfd8403f78eb5c22861bfb64449,,master,passed,Unused imports,96,2013-10-08T21:20:53Z,12293509,push,karma@deadmoose.com,karma@deadmoose.com
+12254823,06acb3b9dc165a7b3c0b3149b524480be929390b,,master,passed,Whitespace,110,2013-10-08T00:11:43Z,12254824,push,karma@deadmoose.com,karma@deadmoose.com
+12252387,8d4eb52b8a6f527289a73c12317ec05e70f4e7c0,,master,passed,Use new JsonLoader.loadLibrary method.,94,2013-10-07T22:32:39Z,12252388,push,mdb@samskivert.com,mdb@samskivert.com
+12252346,8c7774e0d1f93bcdd46856a8f9ed4814052cc6b2,,master,passed,Factored loading out of runtime object model.
+
+JsonLoader is now the only thing that knows/cares about JSON, and parties that
+wish to make use of a binary format can simply follow its lead and construct
+the runtime object model directly.,102,2013-10-07T22:31:13Z,12252347,push,mdb@samskivert.com,mdb@samskivert.com
+11869534,58abe578f5c25f158e4f5ad2612db15daf7e84dc,,tripleplay-1.7.6,errored,Prepare for release of 1.7.6.1
+
+This is for a yotab release requiring the scroller fix.,28,2013-09-27T15:02:18Z,11869535,push,jamie@threerings.net,jamie@threerings.net
+11845751,2d93073376bbff05caf735fbb0e67dd0e4fd21c0,,master,passed,Updated Elements in some comments.,91,2013-09-27T00:32:35Z,11845752,push,jamie@threerings.net,jamie@threerings.net
+11843266,4f0146f7c0d961a9e1ae2dfc2e435cb718d9d7de,,master,passed,Actually, only do that the first time.
+
+No need to keep preparing over and over and over.,97,2013-09-26T22:58:42Z,11843267,push,karma@deadmoose.com,karma@deadmoose.com
+11842946,47c4c8857797d7db099ea3f26cb4fd92054f3c50,,master,passed,Also prepare the underlying Sound when preparing a LazySound,114,2013-09-26T22:48:22Z,11842947,push,karma@deadmoose.com,karma@deadmoose.com
+11801142,7032fc1d3235fa22c86fd1551c18f0ae7c8d451b,,master,passed,Make all transitions clamp their interped values.,153,2013-09-25T22:27:56Z,11801143,push,mdb@samskivert.com,mdb@samskivert.com
+11797865,a4f6d64a79cdf760f86505d823d55a002f1021a1,,master,errored,Added hacky mechanism to skip transition frames.
+
+As the wordy comment indicates, this is a simple way to "fix" the jerkiness
+caused by a screen loading up a bunch of images in wasAdded(). The loading is
+not long enough to merit making a big deal out of it with a loading screen or
+something, like it's 100ms, but 100ms causes a big jerk when you're normally
+expecting animation frames to arrive every 15ms.
+
+A "proper" solution is to load images asynchronously and then only start
+rendering once they're loaded (though then you still have the delay caused by
+uploading textures to the GPU on the first frame), but that complicates the
+shit out of client code with a bunch of image callbacks and blah blah blah, and
+Java provides no good programming language constructs to keep that from
+overwhelming your otherwise simple UI initialization code with boilerplate and
+callback spaghetti.,86,2013-09-25T21:05:13Z,11797866,push,mdb@samskivert.com,mdb@samskivert.com
+11791861,945ba9fd978c4c95220705440a7f2f4ce249ae43,,master,errored,Throw the MFE rather than using trigger.
+
+As I've expounded upon elsewhere, throwing different types of exception
+depending on how many things fail is a fiasco for the catcher. Always throwing
+the MFE is simpler across the board.,91,2013-09-25T18:50:36Z,11791862,push,mdb@samskivert.com,mdb@samskivert.com
+11788248,5c1f946de70f2893352cf4de83ba6a3bda67583c,,master,passed,Added remove().,164,2013-09-25T17:22:10Z,11788249,push,mdb@samskivert.com,mdb@samskivert.com
+11751524,e25e270678c81151e4d1d54dec61223b2ba0deee,,master,passed,Avoid freakout if a root is doubly removed/destroyed.,173,2013-09-24T21:02:16Z,11751525,push,mdb@samskivert.com,mdb@samskivert.com
+11705976,3a4a570ca9f50c88c88d49568827ac4c40db35c3,,master,passed,Introducing ImageOverlay.
+
+This isn't all that useful by itself, but the plan is to use this to implement Menu without all
+the hacky clipping etc.,161,2013-09-23T20:32:08Z,11705977,push,jamie@threerings.net,jamie@threerings.net
+11696651,d2034a95cc90524a1591b81405d83562786a5f5f,,master,passed,Back to SNAPSHOTs
+
+Revert "Prepare for release of 1.7.6"
+
+This reverts commit 55954ec83a4f0c3f059640bd085250cc1a3b9832.,163,2013-09-23T16:39:31Z,11696652,push,jamie@threerings.net,jamie@threerings.net
+11696337,55954ec83a4f0c3f059640bd085250cc1a3b9832,,master,errored,Prepare for release of 1.7.6,29,2013-09-23T16:33:09Z,11696338,push,jamie@threerings.net,jamie@threerings.net
+11477779,02708b06a81b0b05f564c7a273b9d31b5602c66d,,master,passed,On second thought, this isn't needed.
+
+I ended up not finding any usages for it because things do tend to care about behavior for other
+reasons.
+
+Revert "Expose the first part of the behavior setup."
+
+This reverts commit 7f2b9874677119c95a6ea21ee602bff3848c4062.,177,2013-09-17T18:50:31Z,11477780,push,jamie@threerings.net,jamie@threerings.net
+11475899,7f2b9874677119c95a6ea21ee602bff3848c4062,,master,passed,Expose the first part of the behavior setup.
+
+Sometimes, we really don't care about behavior and just want to absorbClicks.,163,2013-09-17T17:56:19Z,11475900,push,jamie@threerings.net,jamie@threerings.net
+11218606,c384ec0af9b0a6e0f583c6a397c1f2b109511dae,,master,passed,Call a style a style.,129,2013-09-11T00:22:23Z,11218607,push,mdb@samskivert.com,mdb@samskivert.com
+11218578,6730178addc7c72370bbbb77c9f28b26286260ad,,master,passed,Document these special circumstances.,141,2013-09-11T00:21:28Z,11218579,push,mdb@samskivert.com,mdb@samskivert.com
+11166614,ec8f764792453240ee8551716510e51ce3d01eaf,,master,passed,Fix NPE introduced with change to Icon.
+
+Previously, the layer was set during construction, but now is null until the first layout.,183,2013-09-09T20:15:59Z,11166615,push,jamie@threerings.net,jamie@threerings.net
+11103342,12732eafd75912a5744a7ab1acdb0ee47407e9eb,,master,passed,Avoid creating garbage for every resolveStyle call.,135,2013-09-07T20:26:07Z,11103343,push,jamie@threerings.net,jamie@threerings.net
+11071029,eded5a95a90e6083ec92e02b1482bc61e11c958b,,master,passed,No need for this anymore,145,2013-09-06T23:35:05Z,11071030,push,jamie@threerings.net,jamie@threerings.net
+11070060,817c4447b3e7c0054b04faffe3f72acab49e9085,,master,errored,Make that a static, as suggested,129,2013-09-06T18:32:51Z,11070061,push,jamie@threerings.net,jamie@threerings.net
+11068846,b3d97fa93c14433ccfb43852779b3d913895a3ca,,master,errored,GroupLayer.clear -> removeAll.,119,2013-09-06T17:38:45Z,11068847,push,mdb@samskivert.com,mdb@samskivert.com
+10958111,0498c6e396cd63f8a6ce82e7245b48d570a8fefb,,master,passed,No need to get array lists involved.,130,2013-09-04T01:46:48Z,10958112,push,mdb@samskivert.com,mdb@samskivert.com
+10955017,4496ceec168d78201b058418ff6f128d5bd4672a,,master,passed,Fix the wreckage; thanks Ray
+
+State the assumption that the test verifies.,170,2013-09-03T23:23:49Z,10955018,push,jamie@threerings.net,jamie@threerings.net
+10951483,be44dd9d1b29b6f6dc1cc0ff8562546345212691,,master,passed,Fixed crash in new Connection utility
+
+I converted this to Arrays.asList at the last minute and didn't notice that remove call, which
+is unsupported.,190,2013-09-03T21:26:04Z,10951484,push,jamie@threerings.net,jamie@threerings.net
+10946467,c8263b4d9491ca52b12934f4503dae68d756ed0d,,tripleplay-1.7.5,errored,Prepare for release of 1.7.5.1
+
+(this is to get yotab build ready without the newset tp),30,2013-09-03T18:54:16Z,10946468,push,jamie@threerings.net,jamie@threerings.net
+10945624,fc30fd07cc2efa44902eb072bedd7ae150aad500,,master,passed,Another few layer utilities.,172,2013-09-03T18:32:58Z,10945625,push,jamie@threerings.net,jamie@threerings.net
+10942551,aa36fd7683d4ae8900974539e2bbc8625d048aea,,master,passed,Some utilities for dealing with layer connections,154,2013-09-03T17:02:52Z,10942552,push,jamie@threerings.net,jamie@threerings.net
+10817106,2dc1d72b564991f6c932240fd44ef58587c0a4e8,,master,passed,Allow Root menu host to be set to something else
+
+(Usually the root().getMenuHost() of the Element owning the parent layer.),165,2013-08-30T21:10:57Z,10817107,push,jamie@threerings.net,jamie@threerings.net
+10768990,9dc44018e29771b65061c6d0df89c7cd92eea22c,,master,passed,OOPS again! Sorry, I should have script that prevents committing ^WIP.*
+
+Revert "WIP: not working selection change listener"
+
+This reverts commit a9f9ef4608562060c686385296fab085c76fc120.
+
+Revert "wip"
+
+This reverts commit 2dbbfbb454b6d18ccc453f7bd3257a8b54c16bd6.,146,2013-08-29T19:46:23Z,10768991,push,jamie@threerings.net,jamie@threerings.net
+10768908,cda26db0629ecafa42a5165c4db73975c4e6efa5,,master,passed,Allow Behavior to apply to Element
+
+This already works, it's just changing the type. This is really nice because a Container type
+can now easily be made clickable using Behavior.
+
+We may want to call enableInteraction in the Behavior constructor or at least expose some way
+of doing it here so that there aren't those two calls to set HIT flags strewn around everywhere.,141,2013-08-29T19:44:22Z,10768909,push,jamie@threerings.net,jamie@threerings.net
+10766109,2d1bd1724c9ec72433287fdf174ee030dd958ef7,,master,passed,Refine the Behavior base classes
+
+This pulls out the Select part of Behavior and derives Click from that. Toggle derives directly so
+no longer needs to explain its lack of super. Also adds an Empty implementation for convenience.,138,2013-08-29T18:32:32Z,10766110,push,jamie@threerings.net,jamie@threerings.net
+10754952,3ff9a7195326af70796e928603f89fb1af5f5135,,master,passed,Factor some commonality into TextButton.,161,2013-08-29T13:49:15Z,10754954,push,mdb@samskivert.com,mdb@samskivert.com
+10735055,7542a5bb7d252de9eb6cde6ccd8cb4be1cab864a,,master,passed,Like Nike says: Just Do It.,128,2013-08-29T00:02:30Z,10735056,push,karma@deadmoose.com,karma@deadmoose.com
+10734039,be16082fb24346ca0562bb4a78ef3770b8c0caec,,master,passed,Added Gradient text effect.,127,2013-08-28T23:19:43Z,10734040,push,ebyan@threerings.net,ebyan@threerings.net
+10691680,9c0b9329f53fda959b271e9d7d4817a6c3841d29,,master,passed,Back to SNAPSHOTS
+
+Revert "Prepare for 1.7.5 release"
+
+This reverts commit f3dc74825638d508e88e26429b27e999482d70ce.,166,2013-08-27T23:03:24Z,10691681,push,jamie@threerings.net,jamie@threerings.net
+10691511,f3dc74825638d508e88e26429b27e999482d70ce,,master,errored,Prepare for 1.7.5 release,58,2013-08-27T22:58:49Z,10691512,push,jamie@threerings.net,jamie@threerings.net
+10679480,7d5527d5170bf6f8719004e85d5457b110c8f3d3,,master,passed,Allow setting the window title on java.,166,2013-08-27T17:59:00Z,10679481,push,karma@deadmoose.com,karma@deadmoose.com
+10552033,130f7a3f6f310055b8645bb74c5c2d2baec5e4ca,,master,passed,Rejigger the way popups are done a little.
+
+We don't really need to wire this up like this anymore, since Root.getMenuHost() is available.,150,2013-08-23T20:35:37Z,10552034,push,jamie@threerings.net,jamie@threerings.net
+10385201,01ee75ec428511bbfdc0ce7fd3612e3695691183,,master,passed,Fix double call of onClick for GlyphWidget
+
+This was missed when Widget learned how to click.,155,2013-08-19T22:16:08Z,10385202,push,jamie@threerings.net,jamie@threerings.net
+10301385,b21f5a37ecf517eb3e0799d36d9e936f4b008515,,master,passed,Move Transformer into a style too,126,2013-08-17T03:51:54Z,10301386,push,jamie@threerings.net,jamie@threerings.net
+10293042,c9d26c44a2785f36a40a7aee6cebb6a3ddc19128,,master,passed,Update styles on the native text field even if it isn't full time
+
+updateMode was always a really confusing method and is more so now, but I'm letting live on for
+the moment.,143,2013-08-16T20:47:19Z,10293043,push,jamie@threerings.net,jamie@threerings.net
+10286335,c2f7ee056a77083f75aeea92f5f86934462df6b7,,master,passed,Move style resolution into NativeTextField
+
+I'm about to add a couple new ones and figured these classes are better off in bed together. Also
+removed the chaining, it is confusing and not useful here.,138,2013-08-16T17:10:44Z,10286336,push,jamie@threerings.net,jamie@threerings.net
+10219170,6c71bb413444ce6fb372b9c7356c370f0d683937,,master,passed,Method to remove an element from its parent, if possible
+
+This is to cover the fairly frequent use case in yotab where a nested UI is constructed, the
+intermediate nests are not retained, an "egg" part such as a button is retained, and later on the
+controlling entity wants to remove that egg from the nest.,159,2013-08-14T22:31:17Z,10219171,push,jamie@threerings.net,jamie@threerings.net
+10210875,7c692ae81c18bf2ca28328398c97767d507a2c29,,master,passed,Reinstate properly typed code.
+
+Eclipse users, please uncheck:
+
+  Preferences -> Java -> Compiler -> Errors/Warnings -> Generic Types ->
+    Generic type parameter declared with a final type bound,181,2013-08-14T18:53:33Z,10210876,push,mdb@samskivert.com,mdb@samskivert.com
+10210756,78a0c40efdc737c2e7310cfed8532ec2d0c08468,,master,passed,Introduce Container.Mutable for mutable containers.,160,2013-08-14T18:50:08Z,10210757,push,mdb@samskivert.com,mdb@samskivert.com
+10209065,2a267f1d01963dae96cfb93bf75c45b6d5e4e4de,,master,passed,Remove deprecated overloads and make the new and improved ones abstract,155,2013-08-14T18:05:49Z,10209066,push,jamie@threerings.net,jamie@threerings.net
+10205344,537dc2a5df5eaa7a282b47b24c98ed09cdd6a0b6,,master,passed,Make Scroller a Composite,192,2013-08-14T16:28:45Z,10205345,push,jamie@threerings.net,jamie@threerings.net
+10182666,5752a1be704cc0e2231d9a4692b804fabfef73b0,,master,passed,Back to SNAPSHOT
+
+Revert "Prepare for release of 1.7.4"
+
+This reverts commit d3b741393d860aea3d0445c7c2312cdc1a808f2f.,138,2013-08-14T04:25:30Z,10182667,push,jamie@threerings.net,jamie@threerings.net
+10182560,d3b741393d860aea3d0445c7c2312cdc1a808f2f,,master,errored,Prepare for release of 1.7.4,29,2013-08-14T04:17:36Z,10182561,push,jamie@threerings.net,jamie@threerings.net
+10178866,42d2bc4f910662beb4eb742d4665f7b3813c207a,,master,passed,Speeling,138,2013-08-14T00:32:42Z,10178867,push,karma@deadmoose.com,karma@deadmoose.com
+10047050,562d56c3a196cad6004fc0dae53aa302e48edc6f,,master,passed,Compiler-appeasing shenanigans.
+
+Boolean is final, so it carps that V can't extend it, but resolve's
+signature wants that format.
+
+This way, however, supports suppression of the warning.,144,2013-08-09T23:22:02Z,10047051,push,karma@deadmoose.com,karma@deadmoose.com
+10005985,e443bb7aae0df6cff96a60d70b1659ed170f9b87,,master,passed,More brevity.,128,2013-08-08T22:00:38Z,10005986,push,zell@threerings.net,zell@threerings.net
+10004620,fe59fd57b2558d6b7c65381d90494645bbd40ea9,,master,passed,Hierarchy-dumping utility for Instances/Movies.,160,2013-08-08T21:17:22Z,10004621,push,zell@threerings.net,zell@threerings.net
+9865903,3383e1f7c299a9d2ceab49e92d7c632f772c709d,,master,passed,Comment update,160,2013-08-05T16:16:57Z,9865904,push,jamie@threerings.net,jamie@threerings.net
+9788661,376a856f1522b6a59104cdcc0a6cb0eafe966f93,,master,passed,Descend into Container for tree traveral,168,2013-08-02T20:11:37Z,9788662,push,jamie@threerings.net,jamie@threerings.net
+9762743,3a175ad623e4d9b60e6d05acd4edf8c6ededcf23,,master,passed,Don't interpolate if the next keyframe is empty.,158,2013-08-02T05:00:03Z,9762744,push,b@aduros.com,b@aduros.com
+9757869,039b0047d68dbb48ce3d7da24bed46a954ebf4ef,,master,passed,Use paint() instead of setPosition() here.
+
+setPosition() doesn't work nicely with nested movies. Should probably
+fix that.,134,2013-08-02T00:15:52Z,9757870,push,b@aduros.com,b@aduros.com
+9158112,1d9616e107d56550e42e3c17df25e5d7840a2b9f,,master,passed,Transitors with NOOP Transitions now complete immediately upon init.,94,2013-07-16T22:14:15Z,9158113,push,ebyan@threerings.net,ebyan@threerings.net
+9153731,ace39da3124be74c9b2dbf3cf709c912a34a12e1,,master,passed,Preparing for 1.8-SNAPSHOT development.,121,2013-07-16T20:18:22Z,9153732,push,jamie@threerings.net,jamie@threerings.net
+9153369,29ffb6a014712b31aeac174f25fc15b40734a7ed,,master,errored,Depend on playn 1.7.3,29,2013-07-16T20:11:38Z,9153370,push,jamie@threerings.net,jamie@threerings.net
+9153299,597837e688cf86aeb019302521a9c1dfe4367725,,master,errored,Preparing for tripleplay-parent-1.7.3 release.,55,2013-07-16T20:10:25Z,9153300,push,jamie@threerings.net,jamie@threerings.net
+9023460,d55dfc11ad37d05e821afb5fcc3515fda296ea73,,master,passed,Use a combined XYValue for Animation.Two.,105,2013-07-12T21:05:48Z,9023461,push,mdb@samskivert.com,mdb@samskivert.com
+9019216,74977b21a58a414fd5557685217c50504f1e5fc8,,master,passed,We need PER_VERT_ATTRS here as well.
+
+Beavis says "Heh heh, pervert attrs!",113,2013-07-12T18:49:45Z,9019217,push,mdb@samskivert.com,mdb@samskivert.com
+9018517,68e851e7d852a11675fccff4db2e1582f8872480,,master,errored,We can now use the stock PlayN shader, pretty much.
+
+Fixes #36.
+
+Now that it supports tinting (more correctly than we did), it does everything
+we need it to do. I had to rearrange it to ensure that all stable (same for all
+verts in a quad) attributes were contiguous. Now that it is, we can splat all
+of our per-particle data in a single copy, then add our vert+tex coords.
+
+This fixes Evgeni's issue where tinting was causing weird edge artifacts.,117,2013-07-12T18:27:05Z,9018518,push,mdb@samskivert.com,mdb@samskivert.com
+8995462,3f2862c4f0ffd0e740f53e3a70f230ca41c12b08,36,master,passed,Tint shader, which doesn't cause white borders in particles,105,2013-07-12T05:08:21Z,8995463,pull_request,evgeni.gordejev@gmail.com,evgeni.gordejev@gmail.com
+8986264,31056bba223c9e453f16e8b2590fcd9e50977763,,master,passed,Move more child management methods up to Container.,95,2013-07-11T22:16:11Z,8986265,push,mdb@samskivert.com,mdb@samskivert.com
+8944748,5d3470a14f86b6d0f5404b4c6a9e72c49d95748f,,master,passed,Added Insets.adjust().,121,2013-07-10T22:56:10Z,8944749,push,mdb@samskivert.com,mdb@samskivert.com
+8931398,3d8395efad70eb92764ca8661af81b9d8ca84fcf,,master,passed,Respect movie.speed().
+
+This doesn't behave precisely the same as the paint()-based solution in Movie itself; if the speed is changed halfway through an animation, the effect will be retroactive using PlayMovie, but not so otherwise. This may or may not be a big deal.,106,2013-07-10T15:48:38Z,8931399,push,zell@threerings.net,zell@threerings.net
+8870964,88a782e789405f4aeb797f2260401dbdd6f178d0,,master,errored,Meh, I'd like to fix all this but not now.,78,2013-07-09T01:26:31Z,8870965,push,mdb@samskivert.com,mdb@samskivert.com
+8870790,60e9ab447ce8530fa8ad4174e5f78f7f050ad040,,master,errored,Use Font.derive().,82,2013-07-09T01:19:28Z,8870791,push,mdb@samskivert.com,mdb@samskivert.com
+8865671,61c88eace0cf8b7d60a1654ba441c7e0785bb12f,,master,passed,CONSTRAIN means to available width, not max width.,116,2013-07-08T22:11:25Z,8865672,push,mdb@samskivert.com,mdb@samskivert.com
+8863830,8aae1ee4e16bf5ca61e91c8716a8557c1692ed69,,master,passed,Added auto-shrink mechanism.
+
+This causes a TextWidget to drop its font size until it fits into its allotted
+horizontal space. Useful when wrapping is not an option.,117,2013-07-08T21:20:33Z,8863831,push,mdb@samskivert.com,mdb@samskivert.com
+8781738,2ad3b9a19d9cde9d35796819461a44a719e81505,,master,passed,Allow a flicker to be disabled.,101,2013-07-05T22:23:47Z,8781739,push,mdb@samskivert.com,mdb@samskivert.com
+8712408,7f0e528b2816c4b4c3b1c1d7970cfabf8da9848e,,master,passed,Allow a constraint to adjust a widget's hints.
+
+This ensures that if we know a label will, for example, be fixed to width W
+that we don't pass some actual width that's way bigger than W, but rather we
+pass W and let the label know that it needs to wrap within that width.,116,2013-07-03T20:49:49Z,8712409,push,mdb@samskivert.com,mdb@samskivert.com
+8674996,4e714bc67cb8e45b1317fa3bf3a4e59188cfdb8b,,master,passed,Also allow destroying Container elements,135,2013-07-02T21:35:01Z,8674997,push,jamie@threerings.net,jamie@threerings.net
+8673252,107a17d3218de00a1e4f9f48d8990cbb3c9216c1,,master,passed,Make Flump instances destroyable.,104,2013-07-02T20:49:44Z,8673253,push,b@aduros.com,b@aduros.com
+8669921,e366c73f8294aeea331d8b88419472fd4ef80194,,master,passed,Allow min/max to be mutated.
+
+It's not unreasonable for the range of a flicker to change, and none of the
+internal flicker math depends on fixed min/max. Indeed, its internal physics
+responds pretty reasonably to bounds changes, even when they result in
+situations where you are temporarily scrolled way past either end.,96,2013-07-02T19:29:16Z,8669922,push,mdb@samskivert.com,mdb@samskivert.com
+8634493,fe07bc032098af4ef1336879bd0302409684fca4,,master,passed,Break user-initiated selection into overridable method.,94,2013-07-01T20:45:31Z,8634494,push,mdb@samskivert.com,mdb@samskivert.com
+8630183,4aa53e7143c19915257228a609642804f03777a1,,master,passed,Beans/frank.,104,2013-07-01T18:32:14Z,8630184,push,mdb@samskivert.com,mdb@samskivert.com
+8569561,03d1f8fcd9407b650c0e62248dfe21b58e5ba8f4,,master,passed,Improve behavior when source image is smaller than bg space.,88,2013-06-29T14:25:59Z,8569562,push,mdb@samskivert.com,mdb@samskivert.com
+8558080,09bf8f85800079d5ee4ccebd7dacac00d58e7907,,master,passed,Handle unready-image icon passed to ctor.
+
+Prior to this, it was not triggering the addition of a Callback to the icon to
+be notified when the image was ready.,83,2013-06-28T23:15:24Z,8558081,push,mdb@samskivert.com,mdb@samskivert.com
+8548678,42a7ab6f3bc15a39a0c4cda780eac832d8e36b8b,,master,passed,Added a button that uses images for up/down state.
+
+I'm not super thrilled with this because it can't extend Button and it's a
+little annoying to have two different kinds of buttons in your code for code
+that wants to operate indiscriminately on button like things.
+
+Clickable doesn't really help because you want something that has Element's API
+(setVisible, setEnabled) and Button's API (click, onClick, etc.).
+
+It's also annoying to duplicate a non-trivial amount of code from Button. If I
+had traits with self types, I could do all this properly. Or union types. Or
+pink unicorns. Pink unicorns solve all problems.,80,2013-06-28T17:52:58Z,8548679,push,mdb@samskivert.com,mdb@samskivert.com
+8516667,b48d4deda7516295f6dbc772b6a5951702812dd1,,master,passed,Be good and leave a deprecated ClickableTextWidget.,83,2013-06-27T19:44:08Z,8516668,push,mdb@samskivert.com,mdb@samskivert.com
+8516607,ce002b3bcab7062d8d8c79d4349904d534eade75,,master,passed,Bring SBT build up to date with various changes.,108,2013-06-27T19:43:52Z,8516608,push,mdb@samskivert.com,mdb@samskivert.com
+8474672,aa8c2a812ec595995c67262a13eaa2742771d2f9,,master,passed,Split assets into separate submodule.,96,2013-06-26T18:14:33Z,8474673,push,mdb@samskivert.com,mdb@samskivert.com
+8434549,21af98c608265f348d84de7d5e34aba24c20ab29,,master,passed,Move back to snapshot PlayN.,91,2013-06-25T18:07:47Z,8434550,push,mdb@samskivert.com,mdb@samskivert.com
+8407227,4c64b93618e37406c3b277bf2454a552f0623256,,master,passed,Fix a bug where the window size was larger than requested on some platforms/themes.
+
+Fancier Windows Vista/7 themes change the size of the window borders based on resizability of the window so we need pack() to happen last.,99,2013-06-25T00:26:26Z,8407228,push,mthomas@threerings.net,mthomas@threerings.net
+8348331,210059116139a5c94c68f5ed9cd9c37e79286247,,master,passed,[maven-release-plugin] prepare for next development iteration,72,2013-06-22T22:48:52Z,8348332,push,mdb@samskivert.com,mdb@samskivert.com
+8348325,359e954ee7b6970685b9fed341f13be159b912e4,,master,passed,[maven-release-plugin] prepare release tripleplay-1.7.2,73,2013-06-22T22:48:50Z,8348326,push,mdb@samskivert.com,mdb@samskivert.com
+8348131,ac4d4b56a1cbd164aa744e7a1c6efb1f6cac6cac,,master,passed,Added bindEnabled().,94,2013-06-22T22:40:05Z,8348132,push,mdb@samskivert.com,mdb@samskivert.com
+8322949,5d86266f4bcdc44eb7f859571b218635bd2ad74c,,master,passed,Complain loudly if a null Animation is added to an AnimGroup
+
+Raise an IllegalArgumentException if an attempt is made to add a null to an AnimGroup.  Without this, a NullPointerException is thrown downstream with no ability to locate the offending code.,94,2013-06-21T20:14:43Z,8322950,push,jeffrey@threerings.net,jeffrey@threerings.net
+8286487,bb7d023fa26514ac5e29be335e4a522d6ee7d3d6,,master,passed,Added bindText + bindIcon for fluent construction.,90,2013-06-20T18:45:53Z,8286488,push,mdb@samskivert.com,mdb@samskivert.com
+8098956,5ebe9e99ebb0909254a825a313a6d8e6c9b63c37,,master,passed,Added TextConfig.renderCX for rendering text centered on an x.
+
+This is otherwise complicated by the need to remember to incorporate the text
+effect when calculating the width for centering. Should probably add a
+renderCY() and renderCXY() for completeness. Or accept alignment constants.
+Meh.,165,2013-06-14T20:30:58Z,8098957,push,mdb@samskivert.com,mdb@samskivert.com
+8071949,27a1402a7b4d30bd75f0dc974b88f48570facd39,,master,passed,Remove the native field when the field is hidden.,163,2013-06-14T00:18:16Z,8071950,push,matt@threerings.net,matt@threerings.net
+7962134,29868c85f054bdcfcdaddfec41767d2c37c8c4df,,master,passed,Call showNewScreen() before initting transitor.
+
+Otherwise showNewScreen() changes the translation of the screen after the
+transitor positions it in init() which causes one frame of jank for transitions
+that require the new screen to start at non-zero coordinates.,184,2013-06-10T20:34:15Z,7962135,push,mdb@samskivert.com,mdb@samskivert.com
+7879667,4e0b6c73f1acc5ee8a9156354505507872c7ef9b,,master,passed,Added support tinting Scale9Backgrounds.
+
+The Scale9Background now sports a setTint() method allowing for the recoloring of a scaled background.  Tinting only works on GL-based backends and, like other setTint() methods, resets alpha.,177,2013-06-07T15:18:13Z,7879668,push,jeffrey@threerings.net,jeffrey@threerings.net
+7816560,4a9c8691a2eeeeca7faf68f4798d5b389ed82f51,,master,passed,Back to 1.8-SNAPSHOT.,169,2013-06-05T18:52:53Z,7816561,push,mdb@samskivert.com,mdb@samskivert.com
+7815700,dfc5dd2462994692da98f5a9669558eeb9da4b02,,master,passed,[maven-release-plugin] prepare for next development iteration,158,2013-06-05T18:25:47Z,7815701,push,mdb@samskivert.com,mdb@samskivert.com
+7815689,8f4593aa6039d806efb25e3f7337112cc21d9b84,,master,passed,[maven-release-plugin] prepare release tripleplay-1.7.1,172,2013-06-05T18:25:29Z,7815690,push,mdb@samskivert.com,mdb@samskivert.com
+7815377,6c9848af39dde3b7a01ac8fdd6c7b957aa4fe876,,master,passed,Prepare for 1.7.1 release.,174,2013-06-05T18:17:03Z,7815378,push,mdb@samskivert.com,mdb@samskivert.com
+7815169,7d2e4e80adbed45e1e7c24abdaf7ad2d21a02ea3,,master,passed,Code to encode/decode to/from string.
+
+Extracted from D11s.,193,2013-06-05T18:11:10Z,7815170,push,mdb@samskivert.com,mdb@samskivert.com
+7790533,dcc59ee68774e5db8b24dc76902066ebf6d1f4b5,,master,passed,Scroller should use the paint rate for smooth scrolling.,178,2013-06-05T01:44:59Z,7790534,push,b@aduros.com,b@aduros.com
+7754198,c96448f5d3c87db6c4b2cd0249778013caf03050,,master,passed,Rolled through an onClick-ed things. LOCs--.,168,2013-06-03T23:56:58Z,7754199,push,mdb@samskivert.com,mdb@samskivert.com
+7751577,9f10bc1abdb32f4d158d9dea10bba2afaacde89d,,master,passed,Apply the fill color before drawing the underline.,177,2013-06-03T21:59:06Z,7751578,push,mike@codecommode.com,mike@codecommode.com
+7721086,322c84ea4db60c6e43f1fae81402b2b022a43e79,,master,passed,Capture pointer events when a native field activates
+
+This cancels the background from scrolling out from under a (non full time) native field in a Scroller.,163,2013-06-03T01:00:19Z,7721087,push,jamie@threerings.net,jamie@threerings.net
+7600561,69a8c1bbdd9d0c1c04c08cf42620cf269ce1ba3a,,master,passed,Expose all of the TextFormat adjusters.
+
+It's annoying to have to change some things on a TextFormat before creating a
+TextConfig.,165,2013-05-29T14:38:48Z,7600562,push,mdb@samskivert.com,mdb@samskivert.com
+7583721,0309e6560f60cec9a8b8fdb5cbcb0a3843c83249,,master,passed,Make our resolvers work on inty and floaty types.
+
+No need to pin them to fixed size types, and this avoids a buggy Eclipse
+warning about extending final types.,169,2013-05-29T00:25:36Z,7583722,push,mdb@samskivert.com,mdb@samskivert.com
+7574135,b07bedab4e4a1ed853ecaaa7276cbf74adcf34f8,,master,errored,Fix (another) problem with menus and overlays
+
+Because menus deselect their items on close, layout occurs a moment after the item trigger, which
+causes a black box to appear on the overlay.
+
+Also added a comment regarding how this ought to get fixed. I have a local commit to attempt to
+support ImageOverlay, but it's not very far along.,149,2013-05-28T18:56:27Z,7574136,push,jamie@threerings.net,jamie@threerings.net
+7574047,f5e1b8e6a055992d2b96a9a35952c48a1a609361,,master,errored,capture() is now on Events.Input.,163,2013-05-28T18:55:26Z,7574048,push,mdb@samskivert.com,mdb@samskivert.com
+7571524,b488a0788812c46b7067225a323a5b0c948ff5b6,,master,passed,Added destroyRoots() for clearing out a UI.,176,2013-05-28T17:33:15Z,7571525,push,mdb@samskivert.com,mdb@samskivert.com
+7516712,46041a00150675541739bd7cb38c6681904f690a,,master,errored,Get snapshot PlayN from SonaType snapshots repo.,31,2013-05-26T20:05:47Z,7516713,push,mdb@samskivert.com,mdb@samskivert.com
+7516570,4be83ba013823669785c7a912f85337cd50cc086,,master,errored,Wire up a Travis build.,25,2013-05-26T19:54:51Z,7516571,push,mdb@samskivert.com,mdb@samskivert.com
