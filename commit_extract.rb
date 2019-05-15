@@ -24,7 +24,7 @@ require 'time_difference'
     #   proc_out.join
     # end
   @out_queue = SizedQueue.new(2000)
-  $token="1450c3f0de1ec52b3baeea17e2ce96e8b24af95f"
+  $token="8bbfaab218a72930d36ec952cfd6494ef5aa348b"
   $REQ_LIMIT = 4990
   def load_all_builds(rootdir,filename)
     f = File.join(rootdi, filename)
@@ -231,7 +231,12 @@ require 'time_difference'
 
     
   end
+
+  
  #get prior commits to last build
+ '''
+ 只找到本地的数据，会有本地找不到的commit情况，暂时没有考虑
+ '''
 def find_commits_to_prior(builds,build,sha,prev_commits,flag)
 
     
@@ -431,6 +436,8 @@ end
       File.open(commit_json, 'w') do |f|
         f.write contents unless r.nil?
         f.write '' if r.nil?
+      puts "获取成功"
+      
       end
 
       if 5000 - @remaining >= $REQ_LIMIT
@@ -568,5 +575,22 @@ end
 owner = ARGV[0]
 @repo = ARGV[1]
 repo = ARGV[1]
-
-test("#{owner}","#{repo}")
+# arry=["eb37fce20c89a3bd14be623ef03bb242118159b0",
+# "b8e9edd09d9008e6f65f5751dd7ad6ecc0004eb4",
+# "46d759b3836e2e78bae251e6ff7d727d88d53554",
+# "cb65d46a8e2618a086020db188b6f1eb60f355ad",
+# ca0cefbf423573c78395ea9bc8914a13dad2bf47
+# 2155f74c5b2a9f877fe84d2a7716282569bb8487
+# 9efb11d7bf6952a00473d16ab63fe18c10d0e57a
+# 8444c6312eea167bf2ec642db1f2cb6dc8cc73b2
+# 8eee968957079d707214beb460b77e67ce9ac53c
+# 61b01c1de2c32db125907a72d79a68ce7e88abea
+# 2038d32ea0e4dc819f7b085535facfc9e2160bca
+# dd2670e66be0e164ccf4521a501c113981c1e201
+# 4cfa50c6b30a6aec49ad1c3d824c5e9576a54303
+# b19a5db803f737eeb3a174e77e82ed76d9f6e056
+# 58abe578f5c25f158e4f5ad2612db15daf7e84dc
+# c8263b4d9491ca52b12934f4503dae68d756ed0d
+# 1ccad68897a760d735285530c988e7e37414b41c"]
+github_commit(owner,repo,"58abe578f5c25f158e4f5ad2612db15daf7e84dc")
+#test("#{owner}","#{repo}")

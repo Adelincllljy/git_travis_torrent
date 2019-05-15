@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
-
+'''
+会发生build缺失的情况.threerings tripleplay为例，代码抓取的最早的build信息是2013-05-26，但是在GitHub上还有更早的commit
+'''
 # Occassionally, Travis fails to include. This is a never-give-up safeguard against such behavior
 def include_travis
   begin
@@ -84,7 +86,7 @@ def get_build(builds, build, wait_in_s = 1)
         puts error_message
         return {}
       end
-      return {} if Date.parse(ended_at) <= @date_threshold
+      #return {} if Date.parse(ended_at) <= @date_threshold
     end
 
     commit = builds['commits'].find { |x| x['id'] == build['commit_id'] }
@@ -203,7 +205,7 @@ def get_travis(repo, build_logs = true, wait_in_s = 1)
   all_builds.reject! { |c| c.empty? }
   # Remove duplicates
   all_builds = all_builds.group_by { |x| x[:build_id] }.map { |k, v| v[0] }
-
+  puts "all_builds.size #{all_builds.size}"
   if all_builds.empty?
     error_message = "Error could not get any repo information for #{repo}."
     puts error_message
