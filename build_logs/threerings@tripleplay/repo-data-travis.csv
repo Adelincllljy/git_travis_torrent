@@ -76,6 +76,7 @@ Having 2.0.2 and 2.0.2a was annoying because most builds want PlayN & TP to be
 on the same version.,67,2018-04-10T19:25:21Z,364775102,push,mdb@samskivert.com,mdb@samskivert.com
 358119317,ceb826ffe7a216faa4cbcc877c29156180202e01,,master,passed,[maven-release-plugin] prepare for next development iteration,136,2018-03-25T18:01:57Z,358119318,push,mdb@samskivert.com,mdb@samskivert.com
 358119303,24eec6e9a17503a5e6b09d5d69ea621e4aaaaf40,,tripleplay-2.0.2a,passed,[maven-release-plugin] prepare release tripleplay-2.0.2a,92,2018-03-25T18:01:51Z,358119304,push,mdb@samskivert.com,mdb@samskivert.com
+358119290,24eec6e9a17503a5e6b09d5d69ea621e4aaaaf40,,master,canceled,[maven-release-plugin] prepare release tripleplay-2.0.2a,0,,358119291,push,mdb@samskivert.com,mdb@samskivert.com
 358117293,9ffa14ac25b0a74c3ab4805f4e919ff26cafe803,,master,passed,[maven-release-plugin] prepare for next development iteration,112,2018-03-25T17:55:01Z,358117294,push,mdb@samskivert.com,mdb@samskivert.com
 358117273,22bdd929eb586971c492a7dc647b605729c66f55,,tripleplay-2.0.2,passed,[maven-release-plugin] prepare release tripleplay-2.0.2,96,2018-03-25T17:54:55Z,358117274,push,mdb@samskivert.com,mdb@samskivert.com
 358117258,22bdd929eb586971c492a7dc647b605729c66f55,,master,passed,[maven-release-plugin] prepare release tripleplay-2.0.2,133,2018-03-25T17:54:51Z,358117259,push,mdb@samskivert.com,mdb@samskivert.com
